@@ -1,0 +1,62 @@
+from django.db import models
+
+# Create your models here.
+
+
+class Instrument(models.Model):
+    # id = models.IntegerField("id", "id", True, 100000, True, False, False)
+    number = models.IntegerField(verbose_name="编号")
+    name = models.CharField(verbose_name="仪器名称", max_length=500)
+    model_number = models.CharField(verbose_name="仪器编号", max_length=500)
+    maker = models.CharField(verbose_name="厂家", max_length=500)
+    type = models.CharField(verbose_name="类别", max_length=500)
+    lab_id = models.ForeignKey('Lab', verbose_name="所属实验室", on_delete=models.CASCADE)
+    is_lend = models.BooleanField(verbose_name='是否出借', default=False)
+
+    class Meta:
+        verbose_name = r'实验仪器'
+        verbose_name_plural = r'实验仪器'
+        get_latest_by = 'number'
+
+    def __str__(self):
+        return self.name
+
+
+class Lab(models.Model):
+    # id = models.IntegerField("id", "id", True, 100000, True, False, False)
+    department_id = models.ForeignKey('Department', on_delete=models.CASCADE, verbose_name="关联学院")
+    name = models.CharField(verbose_name="实验室名称", max_length=500)
+
+    class Meta:
+        verbose_name = r'实验室'
+        verbose_name_plural = r'实验室'
+
+    def __str__(self):
+        return self.name
+
+
+class Department(models.Model):
+    # id = models.IntegerField("id", "id", True, 100000, True, False, False)
+    name = models.CharField(verbose_name="学院名称", max_length=100)
+
+    class Meta:
+        verbose_name = '学院'
+        verbose_name_plural = '学院'
+
+    def __str__(self):
+        return self.name
+
+
+class Apply(models.Model):
+    Instrument_id = models.ForeignKey(verbose_name="申请")
+    email = models.CharField(verbose_name='邮箱', max_length=100)
+    title = models.CharField(verbose_name="标题", max_length=100)
+    text = models.TextField(verbose_name="内容", max_length=1000)
+    time = models.DateField(verbose_name='申请时间')
+
+    class Meta:
+        verbose_name_plural = '申请'
+        verbose_name = '申请'
+
+    def __str__(self):
+        return self.title
