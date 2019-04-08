@@ -19,11 +19,10 @@ from . import views
 
 urlpatterns = [
     path('test', views.Home.as_view(), name='Home'),
-
     path('FindLabWithName', views.FindLabWithName.as_view(), name='FindLabWithName'),
     path('LabList', views.LabList.as_view(), name='LabList'),
     path('InstrumentList', views.InstrumentList.as_view(), name='InstrumentList'),
     path('FindInstrumentWithId', views.FindInstrumentWithId.as_view(), name='FindInstrumentWithId'),
-    path('FindInstrumentWithName', views.FindLabWithName.as_view(), name='FindInstrumentWithName'),
+    path('FindInstrumentWithName', views.FindInstrumentWithName.as_view(), name='FindInstrumentWithName'),
     path('ApplyInstrument', views.ApplyInstrument.as_view(), name='ApplyInstrument'),
 ]

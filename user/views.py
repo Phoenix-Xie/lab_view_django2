@@ -28,12 +28,12 @@ class FindLabWithName(View):
     """
     def get(self, request):
         name = str(request.GET["name"])
-        print(name)
+        # print(name)
 
         # print(chardet.detect("有毒".encode()))
         # print(chardet.detect(name.encode().decode("UTF-8").encode()))
         # name = name.encode("iso-8859-1").decode('utf8')
-        print(name)
+        # print(name)
         lab_list = Lab.objects.filter(name__contains=name)
         # print(lab_list)
         lab_info = []
@@ -58,16 +58,21 @@ class LabList(View):
     实验室列表
     """
     def get(self, request):
-        headId = request.GET["headId"]
-        number = request.GET["number"]
-        lab_list = Lab.objects.all().order_by("id")[headId: headId+number]
+        head_id = int(request.GET["head_id"])
+        number = int(request.GET["number"])
+        lab_list = Lab.objects.all().order_by("id")
+        lab_num = len(lab_list)
+        if head_id >= lab_num:
+            lab_list = []
+        else:
+            lab_list = lab_list[head_id: min(lab_num - 1, head_id+number)]
         lab_info = []
         for lab in lab_list:
             lab_info.append(
                 {
                     'id': lab.id,
                     'name': lab.name,
-                    'department_id': lab.department_id,
+                    'department_id': lab.department_id.id,
                 }
             )
         data = {
@@ -75,7 +80,7 @@ class LabList(View):
             'msg': '获取成功',
             "labs": lab_info,
         }
-        return HttpResponse(data)
+        return JsonResponse(data)
 
 
 class InstrumentList(View):
@@ -83,8 +88,14 @@ class InstrumentList(View):
     仪器列表
     """
     def get(self, request):
-        lab_id = request.GET['lab_id']
-        instrument_list = Instrument.objects.filter(lab_id=lab_id)
+        head_id = int(request.GET['head_id'])
+        number = int(request.GET['number'])
+        instrument_list = Instrument.objects.all().order_by('id')
+        instrument_num = len(instrument_list)
+        if head_id >= instrument_num:
+            instrument_list = []
+        else:
+            instrument_list = instrument_list[head_id: min(instrument_num - 1, head_id + number)]
 
         instrument_info = []
         for instrument in instrument_list:
@@ -96,16 +107,17 @@ class InstrumentList(View):
                     'model_number': instrument.model_number,
                     'maker': instrument.maker,
                     'type': instrument.type,
-                    'lab_id':instrument.lab_id,
+                    'lab_id': instrument.lab_id.id,
                     'is_lend': instrument.is_lend,
                 }
             )
 
-        data={
+        data = {
             'statu': 1,
             'msg': '获取成功',
-            'result': instrument_list
+            'result': instrument_info
         }
+        # print(data)
         return JsonResponse(data, status=200)
 
 
@@ -115,32 +127,32 @@ class FindInstrumentWithId(View):
     """
     def get(self, request):
         id = request.GET['id']
-        instrument_list = Instrument.objects.get(id=id)
-        if instrument_list == None:
+        instrument = Instrument.objects.get(id=id)
+        if instrument == None:
             data = {
                 'statu': -2,
                 'msg': '不存在该仪器',
             }
             return JsonResponse(data)
         instrument_info = []
-        for instrument in instrument_list:
-            instrument_info.append(
-                {
-                    'id': instrument.id,
-                    'number': instrument.number,
-                    'name': instrument.name,
-                    'model_number': instrument.model_number,
-                    'maker': instrument.maker,
-                    'type': instrument.type,
-                    'lab_id': instrument.lab_id,
-                    'is_lend': instrument.is_lend,
-                }
-            )
+
+        instrument_info.append(
+            {
+                'id': instrument.id,
+                'number': instrument.number,
+                'name': instrument.name,
+                'model_number': instrument.model_number,
+                'maker': instrument.maker,
+                'type': instrument.type,
+                'lab_id': instrument.lab_id.id,
+                'is_lend': instrument.is_lend,
+            }
+        )
 
         data = {
             'statu': 1,
             'msg': '获取成功',
-            'result': instrument_list
+            'result': instrument_info
         }
         return JsonResponse(data, status=200)
 
@@ -151,7 +163,9 @@ class FindInstrumentWithName(View):
     """
     def get(self, requst):
         name = requst.GET['name']
+        # print(name)
         instrument_list = Instrument.objects.filter(name__contains=name)
+        print(instrument_list)
         instrument_info = []
         for instrument in instrument_list:
             instrument_info.append(
@@ -162,7 +176,7 @@ class FindInstrumentWithName(View):
                     'model_number': instrument.model_number,
                     'maker': instrument.maker,
                     'type': instrument.type,
-                    'lab_id': instrument.lab_id,
+                    'lab_id': instrument.lab_id.id,
                     'is_lend': instrument.is_lend,
                 }
             )
@@ -170,7 +184,7 @@ class FindInstrumentWithName(View):
         data = {
             'statu': 1,
             'msg': '获取成功',
-            'result': instrument_list
+            'result': instrument_info
         }
         return JsonResponse(data, status=200)
 
