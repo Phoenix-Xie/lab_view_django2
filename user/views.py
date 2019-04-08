@@ -6,7 +6,7 @@ from django.views import View
 from django.views import View
 from django.views.generic import ListView
 from . import models
-from .models import Lab, Instrument, Apply
+from .models import Lab, Instrument, Apply, ApplyInstrumentList
 import chardet
 import datetime
 
@@ -180,9 +180,14 @@ class ApplyInstrument(View):
         email = requst.POST['email']
         title = requst.POST['title']
         text = requst.POST['text']
+        instrument_list = requst.POST['instrument_id']
         time = datetime.datetime.now()
+
 
         apply = Apply(title=title, text=text, time=time, email=email)
         apply.save()
+        for id in instrument_list:
+            applyInstrument = ApplyInstrumentList(Apply_id=apply.id, Instrument_id=id)
+
 
 

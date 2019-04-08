@@ -47,8 +47,20 @@ class Department(models.Model):
         return self.name
 
 
+class ApplyInstrumentList(models.Model):
+    Instrument_id = models.ForeignKey('Instrument', verbose_name="仪器", on_delete=models.CASCADE)
+    Apply_id = models.ForeignKey('Apply', verbose_name="申请", on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = '申请对应仪器表'
+        verbose_name = '申请对应仪器表'
+
+    def __str__(self):
+        return "对应关系"+str(self.id)
+
+
 class Apply(models.Model):
-    Instrument_id = models.ForeignKey(verbose_name="申请")
+    # ApplyInstrumentList_id = models.ForeignKey('ApplyInstrumentList', verbose_name="申请", on_delete=models.CASCADE)
     email = models.CharField(verbose_name='邮箱', max_length=100)
     title = models.CharField(verbose_name="标题", max_length=100)
     text = models.TextField(verbose_name="内容", max_length=1000)
