@@ -16,7 +16,10 @@ class Home(View):
     主页
     """
     def get(self, request):
-        return HttpResponseRedirect("/user/LabList")
+        data = {
+            "hello": "Hello world"
+        }
+        return JsonResponse(data)
 
 
 class FindLabWithName(View):
@@ -25,12 +28,12 @@ class FindLabWithName(View):
     """
     def get(self, request):
         name = str(request.GET["name"])
-        # name.encode("utf-8")
+        print(name)
 
         # print(chardet.detect("有毒".encode()))
         # print(chardet.detect(name.encode().decode("UTF-8").encode()))
-        # name.encode("iso-8859-1").decode('gbk').encode('utf8').decode()
-        # print(name)
+        # name = name.encode("iso-8859-1").decode('utf8')
+        print(name)
         lab_list = Lab.objects.filter(name__contains=name)
         # print(lab_list)
         lab_info = []
@@ -39,7 +42,7 @@ class FindLabWithName(View):
                 {
                     'id': lab.id,
                     'name': lab.name,
-                    'department_id': lab.department_id,
+                    'department_id': lab.department_id.id,
                 }
             )
         data = {
@@ -182,7 +185,6 @@ class ApplyInstrument(View):
         text = requst.POST['text']
         instrument_list = requst.POST['instrument_id']
         time = datetime.datetime.now()
-
 
         apply = Apply(title=title, text=text, time=time, email=email)
         apply.save()
