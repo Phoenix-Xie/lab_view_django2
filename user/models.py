@@ -5,7 +5,6 @@ from django.db import models
 
 class Instrument(models.Model):
     # id = models.IntegerField("id", "id", True, 100000, True, False, False)
-    number = models.IntegerField(verbose_name="编号")
     name = models.CharField(verbose_name="仪器名称", max_length=500)
     model_number = models.CharField(verbose_name="仪器编号", max_length=500)
     maker = models.CharField(verbose_name="厂家", max_length=500)

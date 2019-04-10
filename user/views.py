@@ -199,11 +199,29 @@ class ApplyInstrument(View):
         text = requst.POST['text']
         instrument_list = requst.POST['instrument_id']
         time = datetime.datetime.now()
+        for id in instrument_list.split(' '):
+            instrument = Instrument.objects.filter(id=id)
+            if instrument.count() == 0:
+                data = {
+                    "statu": -1,
+                    "msg": "部分仪器不存在",
+                    "not_exit_id": id,
+                }
+                return JsonResponse(data)
 
         apply = Apply(title=title, text=text, time=time, email=email)
         apply.save()
-        for id in instrument_list:
-            applyInstrument = ApplyInstrumentList(Apply_id=apply.id, Instrument_id=id)
+        for id in instrument_list.split(' '):
+            instrument = Instrument.objects.get(id=id)
+            print(id)
+            applyInstrument = ApplyInstrumentList(Apply_id=apply, Instrument_id=instrument)
+            applyInstrument.save()
+
+        data = {
+            "statu": 1,
+            "msg": "成功提交申请",
+        }
+        return JsonResponse(data)
 
 
 
