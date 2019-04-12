@@ -200,11 +200,11 @@ class ApplyInstrument(View):
         instrument_list = requst.POST['instrument_id']
         time = datetime.datetime.now()
         for id in instrument_list.split(' '):
-            instrument = Instrument.objects.filter(id=id)
+            instrument = Instrument.objects.filter(id=id, is_lend=False)
             if instrument.count() == 0:
                 data = {
                     "statu": -1,
-                    "msg": "部分仪器不存在",
+                    "msg": "部分仪器不存在或已经借出",
                     "not_exit_id": id,
                 }
                 return JsonResponse(data)

@@ -1,10 +1,14 @@
+from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
+
 
 # Create your models here.
 
 
 class Instrument(models.Model):
     # id = models.IntegerField("id", "id", True, 100000, True, False, False)
+    number = models.CharField(verbose_name="编号", max_length=100, default='')
     name = models.CharField(verbose_name="仪器名称", max_length=500)
     model_number = models.CharField(verbose_name="仪器编号", max_length=500)
     maker = models.CharField(verbose_name="厂家", max_length=500)
@@ -55,19 +59,26 @@ class ApplyInstrumentList(models.Model):
         verbose_name = '申请对应仪器表'
 
     def __str__(self):
-        return "对应关系"+str(self.id)
+        return "对应关系" + str(self.id)
 
 
 class Apply(models.Model):
     # ApplyInstrumentList_id = models.ForeignKey('ApplyInstrumentList', verbose_name="申请", on_delete=models.CASCADE)
-    email = models.CharField(verbose_name='邮箱', max_length=100)
+    email = models.CharField(verbose_name='邮箱', max_length=20)
     title = models.CharField(verbose_name="标题", max_length=100)
     text = models.TextField(verbose_name="内容", max_length=1000)
     time = models.DateField(verbose_name='申请时间')
+    statu = models.SmallIntegerField(choices=[(1, "通过"), (-1, "未通过"), (0, "未处理")], verbose_name="状态", default=0)
+    name = models.CharField(verbose_name="申请人姓名", default="无", max_length=10)
 
     class Meta:
         verbose_name_plural = '申请'
         verbose_name = '申请'
+        permissions = (
+            ('view_task', '查看权限'),
+            ('change_task', '修改权限')
+        )
 
     def __str__(self):
         return self.title
+
