@@ -96,6 +96,10 @@ class InstrumentAdmin(admin.ModelAdmin):
         'set_is_lend',
         'set_not_lend',
     ]
+    list_display = ('name', 'type', 'maker', 'is_lend')
+    ordering = ('id',)
+
+    search_fields = ['name']
 
     def set_is_lend(self, request, queryset):
         for ins in queryset:
@@ -110,8 +114,22 @@ class InstrumentAdmin(admin.ModelAdmin):
         self.message_user(request, "已全部设置为未借出")
 
 
+class LabAdmin(admin.ModelAdmin):
+    list_display = ('name', 'id')
+    ordering = ('id',)
+
+    search_fields = ['name']
+
+
+class DepartmentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'id')
+    ordering = ('id',)
+
+    search_fields = ['name']
+
+
 admin.site.register(Apply, ApplyAdmin)
-admin.site.register(Instrument)
-admin.site.register(Lab)
-admin.site.register(Department)
+admin.site.register(Instrument, InstrumentAdmin)
+admin.site.register(Lab, LabAdmin)
+admin.site.register(Department, DepartmentAdmin)
 admin.site.register(ApplyInstrumentList)

@@ -6,7 +6,7 @@ from django.views import View
 from django.views import View
 from django.views.generic import ListView
 from . import models
-from .models import Lab, Instrument, Apply, ApplyInstrumentList
+from .models import Lab, Instrument, Apply, ApplyInstrumentList, Department
 import chardet
 import datetime
 
@@ -28,14 +28,7 @@ class FindLabWithName(View):
     """
     def get(self, request):
         name = str(request.GET["name"])
-        # print(name)
-
-        # print(chardet.detect("有毒".encode()))
-        # print(chardet.detect(name.encode().decode("UTF-8").encode()))
-        # name = name.encode("iso-8859-1").decode('utf8')
-        # print(name)
         lab_list = Lab.objects.filter(name__contains=name)
-        # print(lab_list)
         lab_info = []
         for lab in lab_list:
             lab_info.append(
@@ -60,12 +53,10 @@ class LabList(View):
     def get(self, request):
         head_id = int(request.GET["head_id"])
         number = int(request.GET["number"])
-        lab_list = Lab.objects.all().order_by("id")
-        lab_num = len(lab_list)
-        if head_id >= lab_num:
-            lab_list = []
-        else:
-            lab_list = lab_list[head_id: min(lab_num - 1, head_id+number)]
+        lab_list = Lab.objects.all()\
+            .order_by("id")\
+            .filter(id__gte=head_id)\
+            .filter(id__lte=(number+head_id))
         lab_info = []
         for lab in lab_list:
             lab_info.append(
@@ -90,12 +81,11 @@ class InstrumentList(View):
     def get(self, request):
         head_id = int(request.GET['head_id'])
         number = int(request.GET['number'])
-        instrument_list = Instrument.objects.all().order_by('id')
-        instrument_num = len(instrument_list)
-        if head_id >= instrument_num:
-            instrument_list = []
-        else:
-            instrument_list = instrument_list[head_id: min(instrument_num - 1, head_id + number)]
+        instrument_list = Instrument.objects\
+            .all()\
+            .order_by('id')\
+            .filter(id__gte=head_id)\
+            .filter(id__lte=(head_id+number))
 
         instrument_info = []
         for instrument in instrument_list:
@@ -224,4 +214,69 @@ class ApplyInstrument(View):
         return JsonResponse(data)
 
 
+class DepartmentList(View):
+    def get(self, request):
+        head_id = int(request.GET['head_id'])
+        number = int(request.GET['number'])
+        object_list = Department.objects \
+            .all() \
+            .order_by('id') \
+            .filter(id__gte=head_id) \
+            .filter(id__lte=(head_id + number))
 
+        instrument_info = []
+        for obj in object_list:
+            instrument_info.append(
+                {
+                    'id': obj.id,
+                    'name': obj.name,
+                }
+            )
+
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'result': instrument_info
+        }
+        # print(data)
+        return JsonResponse(data, status=200)
+
+    def other(self, request):
+        data = {
+            'statu': -1,
+            'msg': '异常请求',
+        }
+        # print(data)
+        return JsonResponse(data, status=500)
+
+
+class FindDepartmentWithName(View):
+    def get(self, request):
+        name = request.GET['name']
+        obj = Department.objects.get(name__contains=name)
+
+        if obj is None:
+            data = {
+                'statu': 0,
+                'msg': '查无此学院',
+            }
+            # print(data)
+            return JsonResponse(data, status=200)
+        else:
+            data = {
+                'statu': 1,
+                'msg': '获取成功',
+                'result': {
+                    'id': obj.id,
+                    'name': obj.name,
+                }
+            }
+            # print(data)
+            return JsonResponse(data, status=200)
+
+    def other(self, request):
+        data = {
+            'statu': -1,
+            'msg': '无效请求',
+        }
+        return JsonResponse(data, status=500)
