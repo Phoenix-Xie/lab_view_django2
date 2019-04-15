@@ -9,6 +9,19 @@ from . import models
 from .models import Lab, Instrument, Apply, ApplyInstrumentList, Department
 import chardet
 import datetime
+'''
+状态码列表
+1 成功
+0 内容为空
+-1 无效请求
+-2 字符串过长
+-3 参数不正确
+-4 所查询id不存在
+'''
+# 字符串长度设置
+lab_long = 20
+instrument_long = 50
+department_long = 20
 
 
 class Tools:
@@ -22,6 +35,39 @@ class Tools:
             raise e
         except Exception:
             raise Exception
+
+    @staticmethod
+    def bad_request():
+        data = {
+            'statu': -1,
+            'msg': "异常请求",
+        }
+        return data
+
+    @staticmethod
+    def too_long():
+        data = {
+            'statu': -2,
+            'msg': "字符串过长",
+        }
+        return data
+
+    @staticmethod
+    def head_id_and_number_error():
+        data = {
+            "statu": -3,
+            "msg": "head_id或number非数字"
+        }
+        return data
+
+
+    @staticmethod
+    def id_is_not_exist():
+        data = {
+            "statu": -4,
+            "msg": "id不存在"
+        }
+        return data
 
 
 class Home(View):
@@ -41,6 +87,9 @@ class FindLabWithName(View):
     """
     def get(self, request):
         name = str(request.GET["name"])
+        print(len(name))
+        if len(name) > lab_long:
+            return JsonResponse(Tools.too_long(), status=400)
         lab_list = Lab.objects.filter(name__contains=name)
         lab_info = []
         for lab in lab_list:
@@ -58,6 +107,9 @@ class FindLabWithName(View):
         }
         return JsonResponse(data, status=200)
 
+    def other(self, request):
+        return JsonResponse(Tools.bad_request(), status=400)
+
 
 class LabList(View):
     """
@@ -68,11 +120,7 @@ class LabList(View):
         try:
             head_id, number = Tools.get_head_id_and_number(request)
         except ValueError:
-            data = {
-                "statu": -2,
-                "msg": "head_id或number非数字"
-            }
-            return JsonResponse(data, status=200)
+            return JsonResponse(Tools.head_id_and_number_error(), status=200)
         except Exception:
             return self.other(request)
 
@@ -110,8 +158,14 @@ class InstrumentList(View):
     仪器列表
     """
     def get(self, request):
-        head_id = int(request.GET['head_id'])
-        number = int(request.GET['number'])
+
+        try:
+            head_id, number = Tools.get_head_id_and_number(request)
+        except ValueError:
+            return JsonResponse(Tools.head_id_and_number_error(), status=200)
+        except Exception:
+            return self.other(request)
+
         instrument_list = Instrument.objects\
             .all()\
             .order_by('id')\
@@ -185,6 +239,8 @@ class FindInstrumentWithName(View):
     def get(self, requst):
         name = requst.GET['name']
         # print(name)
+        if len(name) > lab_long:
+            return JsonResponse(Tools.too_long(), status=400)
         instrument_list = Instrument.objects.filter(name__contains=name)
         print(instrument_list)
         instrument_info = []
@@ -247,6 +303,14 @@ class ApplyInstrument(View):
 
 class DepartmentList(View):
     def get(self, request):
+
+        try:
+            head_id, number = Tools.get_head_id_and_number(request)
+        except ValueError:
+            return JsonResponse(Tools.head_id_and_number_error(), status=200)
+        except Exception:
+            return self.other(request)
+
         head_id = int(request.GET['head_id'])
         number = int(request.GET['number'])
         object_list = Department.objects \
@@ -284,8 +348,9 @@ class DepartmentList(View):
 class FindDepartmentWithName(View):
     def get(self, request):
         name = request.GET['name']
+        if len(name) > lab_long:
+            return JsonResponse(Tools.too_long(), status=400)
         obj = Department.objects.get(name__contains=name)
-
         if obj is None:
             data = {
                 'statu': 0,
@@ -310,4 +375,68 @@ class FindDepartmentWithName(View):
             'statu': -1,
             'msg': '无效请求',
         }
+        return JsonResponse(data, status=200)
+
+
+# 根据上级id查询下级
+class FindLabWithDepartmentId(View):
+    def get(self, request):
+        id = int(request.GET['id'])
+
+        # 检查department存在
+        try:
+            d = Department.objects.get(id=id)
+        except Exception:
+            return JsonResponse(Tools.id_is_not_exist())
+
+        lab_list = Lab.objects.filter(department_id=d)
+        lab_info = []
+        for lab in lab_list:
+            lab_info.append(
+                {
+                    'id': lab.id,
+                    'name': lab.name,
+                    'department_id': lab.department_id.id,
+                }
+            )
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            "labs": lab_info,
+        }
+        return JsonResponse(data)
+
+
+class FindInstrumntWithLab(View):
+    def get(self, request):
+        id = int(request.GET['id'])
+
+        # 检查department存在
+        try:
+            d = Lab.objects.get(id=id)
+        except Exception:
+            return JsonResponse(Tools.id_is_not_exist())
+
+        instrument_list = Instrument.objects.filter(lab_id=d)
+        instrument_info = []
+        for instrument in instrument_list:
+            instrument_info.append(
+                {
+                    'id': instrument.id,
+                    'number': instrument.number,
+                    'name': instrument.name,
+                    'model_number': instrument.model_number,
+                    'maker': instrument.maker,
+                    'type': instrument.type,
+                    'lab_id': instrument.lab_id.id,
+                    'is_lend': instrument.is_lend,
+                }
+            )
+
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'result': instrument_info
+        }
+        # print(data)
         return JsonResponse(data, status=200)

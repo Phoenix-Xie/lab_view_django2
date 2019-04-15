@@ -27,4 +27,6 @@ urlpatterns = [
     path('ApplyInstrument', views.ApplyInstrument.as_view(), name='ApplyInstrument'),
     path('DepartmentList', views.DepartmentList.as_view(), name='DepartmentList'),
     path('FindDepartmentWithName', views.FindDepartmentWithName.as_view(), name='FindDepartmentWithName'),
+    path('FindLabWithDepartmentId', views.FindLabWithDepartmentId.as_view(), name='FindLabWithDepartmentId'),
+    path('FindInstrumntWithLab', views.FindInstrumntWithLab.as_view(), name='FindInstrumntWithLab'),
 ]
