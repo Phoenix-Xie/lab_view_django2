@@ -11,6 +11,19 @@ import chardet
 import datetime
 
 
+class Tools:
+    @staticmethod
+    def get_head_id_and_number(request):
+        try:
+            head_id = int(request.GET["head_id"])
+            number = int(request.GET["number"])
+            return head_id, number
+        except ValueError as e:
+            raise e
+        except Exception:
+            raise Exception
+
+
 class Home(View):
     """
     主页
@@ -51,8 +64,19 @@ class LabList(View):
     实验室列表
     """
     def get(self, request):
-        head_id = int(request.GET["head_id"])
-        number = int(request.GET["number"])
+
+        try:
+            head_id, number = Tools.get_head_id_and_number(request)
+        except ValueError:
+            data = {
+                "statu": -2,
+                "msg": "head_id或number非数字"
+            }
+            return JsonResponse(data, status=200)
+        except Exception:
+            return self.other(request)
+
+        # 处理逻辑
         lab_list = Lab.objects.all()\
             .order_by("id")\
             .filter(id__gte=head_id)\
@@ -72,6 +96,13 @@ class LabList(View):
             "labs": lab_info,
         }
         return JsonResponse(data)
+
+    def other(self, request):
+        data = {
+            'statu': -1,
+            'msg': '无效请求',
+        }
+        return JsonResponse(data, status=500)
 
 
 class InstrumentList(View):
@@ -279,4 +310,4 @@ class FindDepartmentWithName(View):
             'statu': -1,
             'msg': '无效请求',
         }
-        return JsonResponse(data, status=500)
+        return JsonResponse(data, status=200)
