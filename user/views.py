@@ -69,8 +69,16 @@ class Tools:
         }
         return data
 
+    @staticmethod
+    def id_is_not_a_number():
+        data = {
+            "statu": -3,
+            "msg": "id不是数字"
+        }
+        return data
 
 class Home(View):
+
     """
     主页
     """
@@ -81,34 +89,49 @@ class Home(View):
         return JsonResponse(data)
 
 
-class FindLabWithName(View):
-    """
-    找到指定名字的实验室
-    """
+# 列表接口
+class DepartmentList(View):
     def get(self, request):
-        name = str(request.GET["name"])
-        print(len(name))
-        if len(name) > lab_long:
-            return JsonResponse(Tools.too_long(), status=400)
-        lab_list = Lab.objects.filter(name__contains=name)
-        lab_info = []
-        for lab in lab_list:
-            lab_info.append(
+
+        try:
+            head_id, number = Tools.get_head_id_and_number(request)
+        except ValueError:
+            return JsonResponse(Tools.head_id_and_number_error(), status=200)
+        except Exception:
+            return self.other(request)
+
+        head_id = int(request.GET['head_id'])
+        number = int(request.GET['number'])
+        object_list = Department.objects \
+            .all() \
+            .order_by('id') \
+            .filter(id__gte=head_id) \
+            .filter(id__lte=(head_id + number))
+
+        instrument_info = []
+        for obj in object_list:
+            instrument_info.append(
                 {
-                    'id': lab.id,
-                    'name': lab.name,
-                    'department_id': lab.department_id.id,
+                    'id': obj.id,
+                    'name': obj.name,
                 }
             )
+
         data = {
             'statu': 1,
             'msg': '获取成功',
-            "result": lab_info,
+            'result': instrument_info
         }
+        # print(data)
         return JsonResponse(data, status=200)
 
     def other(self, request):
-        return JsonResponse(Tools.bad_request(), status=400)
+        data = {
+            'statu': -1,
+            'msg': '异常请求',
+        }
+        # print(data)
+        return JsonResponse(data, status=500)
 
 
 class LabList(View):
@@ -196,40 +219,68 @@ class InstrumentList(View):
         return JsonResponse(data, status=200)
 
 
-class FindInstrumentWithId(View):
-    """
-    根据id获取仪器
-    """
+# 根据名称寻找
+class FindDepartmentWithName(View):
     def get(self, request):
-        id = request.GET['id']
-        instrument = Instrument.objects.get(id=id)
-        if instrument == None:
+        name = request.GET['name']
+        if len(name) > lab_long:
+            return JsonResponse(Tools.too_long(), status=400)
+        try:
+            obj = Department.objects.get(name__contains=name)
+        except Exception:
             data = {
-                'statu': -2,
-                'msg': '不存在该仪器',
+                'statu': 0,
+                'msg': '查无此学院',
             }
-            return JsonResponse(data)
-        instrument_info = []
-
-        instrument_info.append(
-            {
-                'id': instrument.id,
-                'number': instrument.number,
-                'name': instrument.name,
-                'model_number': instrument.model_number,
-                'maker': instrument.maker,
-                'type': instrument.type,
-                'lab_id': instrument.lab_id.id,
-                'is_lend': instrument.is_lend,
-            }
-        )
+            # print(data)
+            return JsonResponse(data, status=200)
 
         data = {
             'statu': 1,
             'msg': '获取成功',
-            'result': instrument_info
+            'result': {
+                'id': obj.id,
+                'name': obj.name,
+            }
         }
         return JsonResponse(data, status=200)
+
+    def other(self, request):
+        data = {
+            'statu': -1,
+            'msg': '无效请求',
+        }
+        return JsonResponse(data, status=200)
+
+
+class FindLabWithName(View):
+    """
+    找到指定名字的实验室
+    """
+    def get(self, request):
+        name = str(request.GET["name"])
+        print(len(name))
+        if len(name) > lab_long:
+            return JsonResponse(Tools.too_long(), status=400)
+        lab_list = Lab.objects.filter(name__contains=name)
+        lab_info = []
+        for lab in lab_list:
+            lab_info.append(
+                {
+                    'id': lab.id,
+                    'name': lab.name,
+                    'department_id': lab.department_id.id,
+                }
+            )
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            "result": lab_info,
+        }
+        return JsonResponse(data, status=200)
+
+    def other(self, request):
+        return JsonResponse(Tools.bad_request(), status=400)
 
 
 class FindInstrumentWithName(View):
@@ -266,6 +317,121 @@ class FindInstrumentWithName(View):
         return JsonResponse(data, status=200)
 
 
+# 根据id寻找
+class FindInstrumentWithId(View):
+    """
+    根据id获取仪器
+    """
+
+    def get(self, request):
+
+        try:
+            id = int(request.GET['id'])
+        except ValueError:
+            return JsonResponse(Tools.id_is_not_a_number())
+        except Exception:
+            return JsonResponse(Tools.bad_request())
+
+        try:
+            obj = Instrument.objects.get(id=id)
+        except Exception:
+            return JsonResponse(Tools.id_is_not_exist())
+
+        obj_info = []
+
+        obj_info.append(
+            {
+                'id': obj.id,
+                'number': obj.number,
+                'name': obj.name,
+                'model_number': obj.model_number,
+                'maker': obj.maker,
+                'type': obj.type,
+                'lab_id': obj.lab_id.id,
+                'is_lend': obj.is_lend,
+            }
+        )
+
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'result': obj_info
+        }
+        return JsonResponse(data, status=200)
+
+
+class FindLabWithId(View):
+    """
+    根据id获取仪器
+    """
+    def get(self, request):
+
+        try:
+            id = int(request.GET['id'])
+        except ValueError:
+            return JsonResponse(Tools.id_is_not_a_number())
+        except Exception:
+            return JsonResponse(Tools.bad_request())
+
+        try:
+            obj = Lab.objects.get(id=id)
+        except Exception:
+            return JsonResponse(Tools.id_is_not_exist())
+
+        obj_info = []
+
+        obj_info.append(
+            {
+                'id': obj.id,
+                'name': obj.name,
+            }
+        )
+
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'result': obj_info
+        }
+        return JsonResponse(data, status=200)
+
+
+class FindDepartmentWithId(View):
+    """
+    根据id获取仪器
+    """
+
+    def get(self, request):
+
+        try:
+            id = int(request.GET['id'])
+        except ValueError:
+            return JsonResponse(Tools.id_is_not_a_number())
+        except Exception:
+            return JsonResponse(Tools.bad_request())
+
+        try:
+            obj = Department.objects.get(id=id)
+        except Exception:
+            return JsonResponse(Tools.id_is_not_exist())
+
+        obj_info = []
+
+        obj_info.append(
+            {
+                'id': obj.id,
+                'name': obj.name,
+            }
+        )
+
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'result': obj_info
+        }
+        return JsonResponse(data, status=200)
+
+
+# 申请
 class ApplyInstrument(View):
     """
     申请仪器
@@ -301,83 +467,6 @@ class ApplyInstrument(View):
         return JsonResponse(data)
 
 
-class DepartmentList(View):
-    def get(self, request):
-
-        try:
-            head_id, number = Tools.get_head_id_and_number(request)
-        except ValueError:
-            return JsonResponse(Tools.head_id_and_number_error(), status=200)
-        except Exception:
-            return self.other(request)
-
-        head_id = int(request.GET['head_id'])
-        number = int(request.GET['number'])
-        object_list = Department.objects \
-            .all() \
-            .order_by('id') \
-            .filter(id__gte=head_id) \
-            .filter(id__lte=(head_id + number))
-
-        instrument_info = []
-        for obj in object_list:
-            instrument_info.append(
-                {
-                    'id': obj.id,
-                    'name': obj.name,
-                }
-            )
-
-        data = {
-            'statu': 1,
-            'msg': '获取成功',
-            'result': instrument_info
-        }
-        # print(data)
-        return JsonResponse(data, status=200)
-
-    def other(self, request):
-        data = {
-            'statu': -1,
-            'msg': '异常请求',
-        }
-        # print(data)
-        return JsonResponse(data, status=500)
-
-
-class FindDepartmentWithName(View):
-    def get(self, request):
-        name = request.GET['name']
-        if len(name) > lab_long:
-            return JsonResponse(Tools.too_long(), status=400)
-        obj = Department.objects.get(name__contains=name)
-        if obj is None:
-            data = {
-                'statu': 0,
-                'msg': '查无此学院',
-            }
-            # print(data)
-            return JsonResponse(data, status=200)
-        else:
-            data = {
-                'statu': 1,
-                'msg': '获取成功',
-                'result': {
-                    'id': obj.id,
-                    'name': obj.name,
-                }
-            }
-            # print(data)
-            return JsonResponse(data, status=200)
-
-    def other(self, request):
-        data = {
-            'statu': -1,
-            'msg': '无效请求',
-        }
-        return JsonResponse(data, status=200)
-
-
 # 根据上级id查询下级
 class FindLabWithDepartmentId(View):
     def get(self, request):
@@ -407,7 +496,7 @@ class FindLabWithDepartmentId(View):
         return JsonResponse(data)
 
 
-class FindInstrumntWithLab(View):
+class FindInstrumentWithLab(View):
     def get(self, request):
         id = int(request.GET['id'])
 
