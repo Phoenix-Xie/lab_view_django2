@@ -2,7 +2,8 @@ from django.contrib import admin, messages
 from django.contrib.admin.actions import delete_selected
 # xie  123456
 # Register your models here.
-from .models import Instrument, Lab, Department, ApplyInstrumentList, Apply
+from .models import Instrument, Lab, Department, ApplyInstrumentList, Apply, MyUser
+
 # from guardian.admin import GuardedModelAdmin
 
 delete_selected.short_description = "删除所有所选项"
@@ -102,16 +103,22 @@ class InstrumentAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
     def set_is_lend(self, request, queryset):
-        for ins in queryset:
-            ins.is_lend = True
-            ins.save()
-        self.message_user(request, "已全部设置为借出")
+        if request.user.belong_lab!=queryset[0].lab_id:
+            print(("无权"))
+        else:
+            for ins in queryset:
+                ins.is_lend = True
+                ins.save()
+            self.message_user(request, "已全部设置为借出")
 
     def set_not_lend(self, request, queryset):
-        for ins in queryset:
-            ins.is_lend = False
-            ins.save()
-        self.message_user(request, "已全部设置为未借出")
+        if request.user.belong_lab!=queryset[0].lab_id:
+            print(("无权"))
+        else:
+            for ins in queryset:
+                ins.is_lend = False
+                ins.save()
+            self.message_user(request, "已全部设置为未借出")
 
 
 class LabAdmin(admin.ModelAdmin):
@@ -133,3 +140,5 @@ admin.site.register(Instrument, InstrumentAdmin)
 admin.site.register(Lab, LabAdmin)
 admin.site.register(Department, DepartmentAdmin)
 admin.site.register(ApplyInstrumentList)
+
+admin.site.register(MyUser)

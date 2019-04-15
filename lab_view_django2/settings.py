@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default
-    'guardian.backends.ObjectPermissionBackend',
+    #'guardian.backends.ObjectPermissionBackend',
 )
 
 INSTALLED_APPS = [
@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     # 'user.apps.UserConfig',
-    'guardian',
+    #'guardian',
 ]
-
+AUTH_USER_MODEL = 'user.MyUser'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
