@@ -31,4 +31,8 @@ urlpatterns = [
     path('FindInstrumentWithLabId', views.FindInstrumentWithLabId.as_view(), name='FindInstrumentWithLabId'),
     path('FindLabWithId', views.FindLabWithId.as_view(), name='FindLabWithId'),
     path('FindDepartmentWithId', views.FindDepartmentWithId.as_view(), name='FindDepartmentWithId'),
+    # 分页
+    path('DepartmentPage', views.DepartmentPage.as_view(), name='DepartmentPage'),
+    path('LabPage', views.LabPage.as_view(), name='LabPage'),
+    path('InstrumentPage', views.InstrumentPage.as_view(), name='InstrumentPage')
 ]

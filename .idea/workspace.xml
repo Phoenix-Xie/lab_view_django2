@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="da0f98e1-b9e6-42f1-8fc5-1189ca6e01fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,16 +13,63 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/lab_view_django2$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1555393416026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/lab_view_django2$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1555395315860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/lab_view_django2$Test__user_tests_FindLabWithNameViewTest.coverage" NAME="Test: user.tests.FindLabWithNameViewTest Coverage Results" MODIFIED="1555310976591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/lab_view_django2$Test__user_tests_FindLabWithNameTest.coverage" NAME="Test: user.tests.FindLabWithNameTest Coverage Results" MODIFIED="1555310462213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/lab_view_django2$Test__user_tests_LabListViewTests.coverage" NAME="Test: user.tests.LabListViewTests Coverage Results" MODIFIED="1555310972045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/lab_view_django2$Test__user_tests_FindDepartmentWithNameViewTest.coverage" NAME="Test: user.tests.FindDepartmentWithNameViewTest Coverage Results" MODIFIED="1555311620037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/lab_view_django2$Test__user_tests_DepartmentListViewTests_test_can_work.coverage" NAME="Test: user.tests.DepartmentListViewTests.test_can_work Coverage Results" MODIFIED="1555394347696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/lab_view_django2$Test__user_tests_FindDepartmentWithNameViewTest_test_normal.coverage" NAME="Test: user.tests.FindDepartmentWithNameViewTest.test_normal Coverage Results" MODIFIED="1555311769506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/lab_view_django2$Test__user_tests_FindInstrumentWithNameViewTest.coverage" NAME="Test: user.tests.FindInstrumentWithNameViewTest Coverage Results" MODIFIED="1555310984217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/user/tests.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="747">
+                    <caret line="131" selection-start-line="131" selection-end-line="131" />
+                    <folding>
+                      <element signature="e#230#434#0" />
+                      <element signature="e#263#409#0" />
+                      <element signature="e#482#686#0" />
+                      <element signature="e#515#686#0" />
+                      <element signature="e#727#931#0" />
+                      <element signature="e#760#931#0" />
+                      <element signature="e#981#1289#0" />
+                      <element signature="e#1014#1185#0" />
+                      <element signature="e#519#789#0" />
+                      <element signature="e#1547#1869#0" />
+                      <element signature="e#1579#1738#0" />
+                      <element signature="e#1129#1413#0" />
+                      <element signature="e#2135#2457#0" />
+                      <element signature="e#2163#2322#0" />
+                      <element signature="e#1760#2044#0" />
+                      <element signature="e#2721#2922#0" />
+                      <element signature="e#2754#2922#0" />
+                      <element signature="e#2972#3171#0" />
+                      <element signature="e#3005#3171#0" />
+                      <element signature="e#3231#3429#0" />
+                      <element signature="e#3264#3429#0" />
+                      <element signature="e#3467#3471#0" />
+                      <element signature="e#3527#3551#0" />
+                      <element signature="e#3560#3725#0" />
+                      <element signature="e#3793#3994#0" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -37,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/user/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1008">
-              <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+            <state relative-caret-position="444">
+              <caret line="36" column="81" selection-start-line="36" selection-start-column="81" selection-end-line="36" selection-end-column="81" />
               <folding>
                 <element signature="e#640#672#0" expanded="true" />
               </folding>
@@ -75,14 +123,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/user/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+            <state relative-caret-position="458">
+              <caret line="603" column="67" selection-start-line="603" selection-start-column="67" selection-end-line="603" selection-end-column="67" />
               <folding>
                 <element signature="e#381#444#1" />
-                <element signature="e#530#1577#0" />
                 <element signature="e#593#836#0" />
                 <element signature="e#610#730#0" />
                 <element signature="e#887#977#0" />
@@ -95,24 +142,30 @@
                 <element signature="e#1345#1408#0" />
                 <element signature="e#1486#1577#0" />
                 <element signature="e#1493#1557#0" />
+                <element signature="e#1648#1771#0" />
+                <element signature="e#1655#1743#0" />
+                <element signature="e#1813#2030#0" />
+                <element signature="e#1884#2101#0" />
+                <element signature="e#2380#2861#0" />
                 <element signature="e#1602#1744#0" />
                 <element signature="e#1602#1620#1" />
                 <element signature="e#1657#1744#0" />
                 <element signature="e#1664#1710#0" />
+                <element signature="e#1958#2994#0" />
+                <element signature="e#1835#1914#0" />
+                <element signature="e#3828#4550#0" />
+                <element signature="e#3877#3956#0" />
+                <element signature="e#4593#5315#0" />
+                <element signature="e#4642#4721#0" />
                 <element signature="e#1786#2916#0" />
-                <element signature="e#2448#2539#0" />
                 <element signature="e#2778#2916#0" />
                 <element signature="e#2785#2848#0" />
                 <element signature="e#2944#3971#0" />
                 <element signature="e#2944#2965#1" />
-                <element signature="e#3476#3673#0" />
-                <element signature="e#3509#3659#0" />
                 <element signature="e#3855#3971#0" />
                 <element signature="e#3862#3925#0" />
                 <element signature="e#4006#5221#0" />
                 <element signature="e#4006#4026#1" />
-                <element signature="e#4572#5036#0" />
-                <element signature="e#4612#5022#0" />
                 <element signature="e#5273#6081#0" />
                 <element signature="e#5305#5925#0" />
                 <element signature="e#5540#5698#0" />
@@ -157,10 +210,6 @@
                 <element signature="e#10970#11104#0" />
                 <element signature="e#11297#11488#0" />
                 <element signature="e#11505#11569#0" />
-                <element signature="e#11660#12346#0" />
-                <element signature="e#12388#13405#0" />
-                <element signature="e#12756#13220#0" />
-                <element signature="e#12796#13206#0" />
               </folding>
             </state>
           </provider>
@@ -169,26 +218,37 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/user/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="175">
+              <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/user/tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-                <element signature="e#213#433#0" />
-                <element signature="e#481#1036#0" />
-                <element signature="e#1091#1667#0" />
-                <element signature="e#1722#2373#0" />
+                <element signature="e#100#113#0" />
+                <element signature="e#382#672#0" />
+                <element signature="e#529#672#0" />
+                <element signature="e#740#2952#0" />
+                <element signature="e#873#928#0" />
+                <element signature="e#1014#1888#0" />
+                <element signature="e#1049#1888#0" />
+                <element signature="e#1086#1173#0" />
+                <element signature="e#1379#1466#0" />
+                <element signature="e#1428#1466#0" />
+                <element signature="e#1646#1888#0" />
+                <element signature="e#1699#1774#0" />
+                <element signature="e#1992#2263#0" />
+                <element signature="e#2027#2263#0" />
+                <element signature="e#2096#2194#0" />
+                <element signature="e#2439#2582#0" />
+                <element signature="e#2646#2952#0" />
+                <element signature="e#2803#2952#0" />
+                <element signature="e#3030#3784#0" />
+                <element signature="e#3040#3094#0" />
+                <element signature="e#3259#3492#0" />
+                <element signature="e#3359#3492#0" />
+                <element signature="e#3396#3441#0" />
+                <element signature="e#3549#3784#0" />
+                <element signature="e#3649#3784#0" />
+                <element signature="e#3686#3732#0" />
+                <element signature="e#3825#3907#0" />
+                <element signature="e#3955#4037#0" />
               </folding>
             </state>
           </provider>
@@ -203,14 +263,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/user/tests.py" />
+        <option value="$PROJECT_DIR$/user/urls.py" />
         <option value="$PROJECT_DIR$/user/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+    <option name="x" value="-8" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -260,7 +322,27 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Django server.lab_view_django2">
+  <component name="RunManager" selected="Django tests.Test: user.tests.DepartmentListViewTests.test_can_work">
+    <configuration name="Test: user.tests.DepartmentListViewTests.test_can_work" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="lab_view_django2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="user.tests.DepartmentListViewTests.test_can_work" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Test: user.tests.FindDepartmentWithNameViewTest" type="DjangoTestsConfigurationType" temporary="true">
       <module name="lab_view_django2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -361,26 +443,6 @@
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Test: user.tests.LabListViewTests" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="lab_view_django2" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="user.tests.LabListViewTests" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="lab_view_django2" type="Python.DjangoServer" factoryName="Django server">
       <module name="lab_view_django2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -407,11 +469,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Django tests.Test: user.tests.DepartmentListViewTests.test_can_work" />
         <item itemvalue="Django tests.Test: user.tests.FindDepartmentWithNameViewTest.test_normal" />
         <item itemvalue="Django tests.Test: user.tests.FindDepartmentWithNameViewTest" />
         <item itemvalue="Django tests.Test: user.tests.FindInstrumentWithNameViewTest" />
         <item itemvalue="Django tests.Test: user.tests.FindLabWithNameViewTest" />
-        <item itemvalue="Django tests.Test: user.tests.LabListViewTests" />
       </list>
     </recent_temporary>
   </component>
@@ -454,7 +516,7 @@
       <workItem from="1555307349322" duration="5324000" />
       <workItem from="1555327435688" duration="2388000" />
       <workItem from="1555329967228" duration="1648000" />
-      <workItem from="1555392768831" duration="692000" />
+      <workItem from="1555392768831" duration="5823000" />
     </task>
     <task id="LOCAL-00001" summary="重起仓库">
       <created>1555329049038</created>
@@ -470,19 +532,19 @@
       <option name="project" value="LOCAL" />
       <updated>1555330410286</updated>
     </task>
-    <task id="LOCAL-00003" summary="修改接口FindLabWithName">
-      <created>1554726477024</created>
+    <task id="LOCAL-00003" summary="修改接口参数，添加number">
+      <created>1555393526882</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1554726477024</updated>
+      <updated>1555393526882</updated>
     </task>
-    <task id="LOCAL-00004" summary="修复所有get接口bug">
-      <created>1554728980507</created>
+    <task id="LOCAL-00004" summary="修改一个写错的url：FindInstrumentWithId,添加正确运行的test">
+      <created>1555395419400</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1554728980507</updated>
+      <updated>1555395419400</updated>
     </task>
     <task id="LOCAL-00005" summary="修改post接口">
       <created>1554875692007</created>
@@ -533,11 +595,43 @@
       <option name="project" value="LOCAL" />
       <updated>1555328510818</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Test__ - 2019.04.16 at 13h 43m 38s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__user_tests_DepartmentListViewTests_test_can_work - 2019.04.16 at 13h 58m 47s.xml">
+      <configuration name="Test: user.tests.DepartmentListViewTests.test_can_work" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__user_tests_DepartmentListViewTests_test_can_work - 2019.04.16 at 13h 59m 10s.xml">
+      <configuration name="Test: user.tests.DepartmentListViewTests.test_can_work" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ - 2019.04.16 at 14h 02m 29s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ - 2019.04.16 at 14h 08m 54s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ - 2019.04.16 at 14h 09m 27s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ - 2019.04.16 at 14h 10m 27s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ - 2019.04.16 at 14h 10m 30s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ - 2019.04.16 at 14h 10m 38s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ - 2019.04.16 at 14h 15m 18s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3489000" />
+    <option name="totallyTimeSpent" value="8620000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -550,13 +644,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17895442" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.3692946" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39442816" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.04398827" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -567,7 +662,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.43777454" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49932975" weight="0.43777454" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32991204" />
-      <window_info anchor="bottom" id="manage.py@lab_view_django2" order="13" weight="0.313783" />
+      <window_info anchor="bottom" id="manage.py@lab_view_django2" order="13" weight="0.3123077" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -592,23 +687,15 @@
     <MESSAGE value="添加两个根据id查询接口" />
     <MESSAGE value="重起仓库" />
     <MESSAGE value="修补修补" />
-    <option name="LAST_COMMIT_MESSAGE" value="修补修补" />
+    <MESSAGE value="修改接口参数，添加number" />
+    <MESSAGE value="修改一个写错的url：FindInstrumentWithId,添加正确运行的test" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改一个写错的url：FindInstrumentWithId,添加正确运行的test" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lab_view_django2/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1584">
           <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-          <folding>
-            <element signature="e#640#672#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -629,16 +716,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/user/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
@@ -654,13 +731,93 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/user/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+          <folding>
+            <element signature="e#100#113#0" />
+            <element signature="e#382#672#0" />
+            <element signature="e#529#672#0" />
+            <element signature="e#740#2952#0" />
+            <element signature="e#873#928#0" />
+            <element signature="e#1014#1888#0" />
+            <element signature="e#1049#1888#0" />
+            <element signature="e#1086#1173#0" />
+            <element signature="e#1379#1466#0" />
+            <element signature="e#1428#1466#0" />
+            <element signature="e#1646#1888#0" />
+            <element signature="e#1699#1774#0" />
+            <element signature="e#1992#2263#0" />
+            <element signature="e#2027#2263#0" />
+            <element signature="e#2096#2194#0" />
+            <element signature="e#2439#2582#0" />
+            <element signature="e#2646#2952#0" />
+            <element signature="e#2803#2952#0" />
+            <element signature="e#3030#3784#0" />
+            <element signature="e#3040#3094#0" />
+            <element signature="e#3259#3492#0" />
+            <element signature="e#3359#3492#0" />
+            <element signature="e#3396#3441#0" />
+            <element signature="e#3549#3784#0" />
+            <element signature="e#3649#3784#0" />
+            <element signature="e#3686#3732#0" />
+            <element signature="e#3825#3907#0" />
+            <element signature="e#3955#4037#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="747">
+          <caret line="131" selection-start-line="131" selection-end-line="131" />
+          <folding>
+            <element signature="e#230#434#0" />
+            <element signature="e#263#409#0" />
+            <element signature="e#482#686#0" />
+            <element signature="e#515#686#0" />
+            <element signature="e#727#931#0" />
+            <element signature="e#760#931#0" />
+            <element signature="e#981#1289#0" />
+            <element signature="e#1014#1185#0" />
+            <element signature="e#519#789#0" />
+            <element signature="e#1547#1869#0" />
+            <element signature="e#1579#1738#0" />
+            <element signature="e#1129#1413#0" />
+            <element signature="e#2135#2457#0" />
+            <element signature="e#2163#2322#0" />
+            <element signature="e#1760#2044#0" />
+            <element signature="e#2721#2922#0" />
+            <element signature="e#2754#2922#0" />
+            <element signature="e#2972#3171#0" />
+            <element signature="e#3005#3171#0" />
+            <element signature="e#3231#3429#0" />
+            <element signature="e#3264#3429#0" />
+            <element signature="e#3467#3471#0" />
+            <element signature="e#3527#3551#0" />
+            <element signature="e#3560#3725#0" />
+            <element signature="e#3793#3994#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="36" column="81" selection-start-line="36" selection-start-column="81" selection-end-line="36" selection-end-column="81" />
+          <folding>
+            <element signature="e#640#672#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/user/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+        <state relative-caret-position="458">
+          <caret line="603" column="67" selection-start-line="603" selection-start-column="67" selection-end-line="603" selection-end-column="67" />
           <folding>
             <element signature="e#381#444#1" />
-            <element signature="e#530#1577#0" />
             <element signature="e#593#836#0" />
             <element signature="e#610#730#0" />
             <element signature="e#887#977#0" />
@@ -673,24 +830,30 @@
             <element signature="e#1345#1408#0" />
             <element signature="e#1486#1577#0" />
             <element signature="e#1493#1557#0" />
+            <element signature="e#1648#1771#0" />
+            <element signature="e#1655#1743#0" />
+            <element signature="e#1813#2030#0" />
+            <element signature="e#1884#2101#0" />
+            <element signature="e#2380#2861#0" />
             <element signature="e#1602#1744#0" />
             <element signature="e#1602#1620#1" />
             <element signature="e#1657#1744#0" />
             <element signature="e#1664#1710#0" />
+            <element signature="e#1958#2994#0" />
+            <element signature="e#1835#1914#0" />
+            <element signature="e#3828#4550#0" />
+            <element signature="e#3877#3956#0" />
+            <element signature="e#4593#5315#0" />
+            <element signature="e#4642#4721#0" />
             <element signature="e#1786#2916#0" />
-            <element signature="e#2448#2539#0" />
             <element signature="e#2778#2916#0" />
             <element signature="e#2785#2848#0" />
             <element signature="e#2944#3971#0" />
             <element signature="e#2944#2965#1" />
-            <element signature="e#3476#3673#0" />
-            <element signature="e#3509#3659#0" />
             <element signature="e#3855#3971#0" />
             <element signature="e#3862#3925#0" />
             <element signature="e#4006#5221#0" />
             <element signature="e#4006#4026#1" />
-            <element signature="e#4572#5036#0" />
-            <element signature="e#4612#5022#0" />
             <element signature="e#5273#6081#0" />
             <element signature="e#5305#5925#0" />
             <element signature="e#5540#5698#0" />
@@ -735,24 +898,6 @@
             <element signature="e#10970#11104#0" />
             <element signature="e#11297#11488#0" />
             <element signature="e#11505#11569#0" />
-            <element signature="e#11660#12346#0" />
-            <element signature="e#12388#13405#0" />
-            <element signature="e#12756#13220#0" />
-            <element signature="e#12796#13206#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-            <element signature="e#213#433#0" />
-            <element signature="e#481#1036#0" />
-            <element signature="e#1091#1667#0" />
-            <element signature="e#1722#2373#0" />
           </folding>
         </state>
       </provider>
