@@ -501,7 +501,7 @@ class FindLabWithDepartmentId(View):
         return JsonResponse(data)
 
 
-class FindInstrumentWithLab(View):
+class FindInstrumentWithLabId(View):
     def get(self, request):
         id = int(request.GET['id'])
 
