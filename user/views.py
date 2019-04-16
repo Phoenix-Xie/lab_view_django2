@@ -77,6 +77,7 @@ class Tools:
         }
         return data
 
+
 class Home(View):
 
     """
@@ -108,9 +109,9 @@ class DepartmentList(View):
             .filter(id__gte=head_id) \
             .filter(id__lte=(head_id + number))
 
-        instrument_info = []
+        obj_info = []
         for obj in object_list:
-            instrument_info.append(
+            obj_info.append(
                 {
                     'id': obj.id,
                     'name': obj.name,
@@ -120,7 +121,8 @@ class DepartmentList(View):
         data = {
             'statu': 1,
             'msg': '获取成功',
-            'result': instrument_info
+            'number': len(object_list),
+            'result': obj_info
         }
         # print(data)
         return JsonResponse(data, status=200)
@@ -164,6 +166,7 @@ class LabList(View):
         data = {
             'statu': 1,
             'msg': '获取成功',
+            'number': len(lab_list),
             "labs": lab_info,
         }
         return JsonResponse(data)
@@ -213,6 +216,7 @@ class InstrumentList(View):
         data = {
             'statu': 1,
             'msg': '获取成功',
+            'number': len(instrument_list),
             'result': instrument_info
         }
         # print(data)
@@ -491,7 +495,8 @@ class FindLabWithDepartmentId(View):
         data = {
             'statu': 1,
             'msg': '获取成功',
-            "labs": lab_info,
+            'number': len(lab_list),
+            "result": lab_info,
         }
         return JsonResponse(data)
 
@@ -525,6 +530,7 @@ class FindInstrumentWithLab(View):
         data = {
             'statu': 1,
             'msg': '获取成功',
+            'number': len(instrument_list),
             'result': instrument_info
         }
         # print(data)
