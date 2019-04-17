@@ -4,9 +4,14 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views import View
 # Create your views here.
 from django.views import View
+from django.views.generic import ListView
+from . import models
 from .models import Lab, Instrument, Apply, ApplyInstrumentList, Department
-from django.core.paginator import Paginator, EmptyPage
+import chardet
 import datetime
+'''
+未进行类重构代码备份
+'''
 '''
 状态码列表
 1 成功
@@ -20,9 +25,6 @@ import datetime
 lab_long = 20
 instrument_long = 50
 department_long = 20
-lab_page_num = 5
-insturment_page_num = 5
-department_page_num = 5
 
 
 class Tools:
@@ -78,14 +80,6 @@ class Tools:
         return data
 
     @staticmethod
-    def page_is_not_a_number():
-        data = {
-            "statu": -3,
-            "msg": "page不是数字"
-        }
-        return data
-
-    @staticmethod
     def page_number_is_not_a_number():
         data = {
             "statu": -3,
@@ -94,20 +88,7 @@ class Tools:
         return data
 
     @staticmethod
-    def page_empty():
-        data = {
-            'statu': 0,
-            'msg': '该页内容为空',
-        }
-        return data
-
-    @staticmethod
-    def return_department_list(obj_list, page=1):
-        p = Paginator(obj_list, department_page_num)
-        try:
-            obj_list = p.page(page).object_list
-        except Exception as e:
-            raise e
+    def return_department_list(obj_list):
         obj_info = []
         for obj in obj_list:
             obj_info.append(
@@ -119,12 +100,7 @@ class Tools:
         return obj_info
 
     @staticmethod
-    def return_lab_list(obj_list, page=1):
-        p = Paginator(obj_list, lab_page_num)
-        try:
-            obj_list = p.page(page).object_list
-        except Exception as e:
-            raise e
+    def return_lab_list(obj_list):
         obj_info = []
         for obj in obj_list:
             obj_info.append(
@@ -138,12 +114,7 @@ class Tools:
         return obj_info
 
     @staticmethod
-    def return_instrument_list(obj_list, page=1):
-        p = Paginator(obj_list, insturment_page_num)
-        try:
-            obj_list = p.page(page).object_list
-        except Exception as e:
-            raise e
+    def return_instrument_list(obj_list):
         obj_info = []
         for obj in obj_list:
             obj_info.append(
@@ -176,70 +147,76 @@ class Home(View):
 
 
 # 分页接口
-class Page(View):
-    def __init__(self):
-        super().__init__()
-        self.obj_model = Instrument.objects
-
-    def return_func(self, obj_list):
-        return Tools.return_instrument_list(obj_list)
-
+class DepartmentPage(View):
     def get(self, request):
         try:
             page = int(request.GET['page'])
-            # number = int(request.GET['number'])
+            number = int(request.GET['number'])
         except ValueError:
             return JsonResponse(Tools.id_is_not_a_number())
         except Exception:
             return JsonResponse(Tools.bad_request())
 
-        obj_list = self.obj_model.all().order_by('id')
-        try:
-            obj_list = self.return_func(obj_list, page)
-        except EmptyPage:
-            data = {
-                'statu': 0,
-                'msg': '该页内容为空',
-            }
-            return JsonResponse(data)
-        except Exception:
-            return JsonResponse(Tools.bad_request())
-
+        obj_list = Department.objects.all().order_by('id')
+        obj_len = len(obj_list)
+        obj_list = obj_list[min(page*number, obj_len-1), min((page+1)*number, obj_len-1)]
 
         data = {
             'statu': 1,
             'msg': '获取成功',
-            'result': obj_list
+            'number': len(obj_list),
+            'result': Tools.return_department_list(obj_list)
         }
         # print(data)
         return JsonResponse(data, status=200)
 
 
-class DepartmentPage(Page):
-    def __init__(self):
-        super().__init__()
-        self.obj_model = Department.objects
+class LabPage(View):
+    def get(self, request):
+        try:
+            page = int(request.GET['page'])
+            number = int(request.GET['number'])
+        except ValueError:
+            return JsonResponse(Tools.id_is_not_a_number())
+        except Exception:
+            return JsonResponse(Tools.bad_request())
 
-    def return_func(self, obj_list):
-        return Tools.return_department_list(obj_list)
+        obj_list = Lab.objects.all().order_by('id')
+        obj_len = len(obj_list)
+        obj_list = obj_list[min(page*number, obj_len-1), min((page+1)*number, obj_len-1)]
 
-
-class LabPage(Page):
-    def __init__(self):
-        super().__init__()
-        self.obj_model = Lab.objects
-
-    def return_func(self, obj_list):
-        return Tools.return_lab_list(obj_list)
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'number': len(obj_list),
+            'result': Tools.return_lab_list(obj_list)
+        }
+        # print(data)
+        return JsonResponse(data, status=200)
 
 
 class InstrumentPage(View):
-    def __init__(self):
-        super().__init__()
-        self.obj_model = Instrument.objects
+    def get(self, request):
+        try:
+            page = int(request.GET['page'])
+            number = int(request.GET['number'])
+        except ValueError:
+            return JsonResponse(Tools.id_is_not_a_number())
+        except Exception:
+            return JsonResponse(Tools.bad_request())
 
-    def return_func(self, obj_list):
-        return Tools.return_instrument_list(obj_list)
+        obj_list = Instrument.objects.all().order_by('id')
+        obj_len = len(obj_list)
+        obj_list = obj_list[min(page*number, obj_len-1), min((page+1)*number, obj_len-1)]
+
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'number': len(obj_list),
+            'result': Tools.return_instrument_list(obj_list)
+        }
+        # print(data)
+        return JsonResponse(data, status=200)
 
 
 # 列表接口
@@ -269,7 +246,7 @@ class List(View):
             'statu': 1,
             'msg': '获取成功',
             'number': len(obj_list),
-            'result': self.return_func(obj_list)
+            'result': self.return_type(obj_list)
         }
         # print(data)
         return JsonResponse(data, status=200)
@@ -309,30 +286,23 @@ class InstrumentList(List):
 
 # 根据名称寻找
 class FindWithName(View):
-    """
-    需要制定limit函数和return_func函数
-    """
-    def __init__(self):
-        super().__init__()
+    def limit(self):
         self.long = lab_long
         self.obj_model = Lab.objects
 
-    def return_func(self, obj_list, page=1):
-        return Tools.return_lab_list(obj_list, page)
+    def return_func(self, obj_list):
+        return Tools.return_lab_list(obj_list)
 
     def get(self, request):
         try:
             name = request.GET['name']
-            page = int(request.GET.get('page', 1))
-        except ValueError:
-            return JsonResponse(Tools.page_is_not_a_number())
         except Exception:
            return self.other(request)
 
         if len(name) > self.long:
             return JsonResponse(Tools.too_long(), status=400)
         try:
-            obj_list = Department.objects.filter(name__contains=name).order_by('id')
+            obj_list = Department.objects.filter(name__contains=name)
         except Exception:
             data = {
                 'statu': 0,
@@ -341,17 +311,10 @@ class FindWithName(View):
             # print(data)
             return JsonResponse(data, status=200)
 
-        try:
-            obj_list = self.return_func(obj_list, page)
-        except EmptyPage:
-            return JsonResponse(Tools.page_empty())
-        except Exception:
-            return JsonResponse(Tools.bad_request())
-
         data = {
             'statu': 1,
             'msg': '获取成功',
-            'result': obj_list
+            'result': self.return_func(obj_list)
         }
         return JsonResponse(data, status=200)
 
@@ -363,51 +326,108 @@ class FindWithName(View):
         return JsonResponse(data, status=200)
 
 
-class FindDepartmentWithName(FindWithName):
-    def __init__(self):
-        super().__init__()
-        self.long = department_long
-        self.obj_model = Department.objects
+class FindDepartmentWithName(View):
+    def get(self, request):
+        name = request.GET['name']
+        if len(name) > lab_long:
+            return JsonResponse(Tools.too_long(), status=400)
+        try:
+            obj = Department.objects.get(name__contains=name)
+        except Exception:
+            data = {
+                'statu': 0,
+                'msg': '查无此学院',
+            }
+            # print(data)
+            return JsonResponse(data, status=200)
 
-    def return_func(self, obj_list):
-        return Tools.return_department_list(obj_list)
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'result': {
+                'id': obj.id,
+                'name': obj.name,
+            }
+        }
+        return JsonResponse(data, status=200)
+
+    def other(self, request):
+        data = {
+            'statu': -1,
+            'msg': '无效请求',
+        }
+        return JsonResponse(data, status=200)
 
 
-class FindLabWithName(FindWithName):
+class FindLabWithName(View):
     """
     找到指定名字的实验室
     """
+    def get(self, request):
+        name = str(request.GET["name"])
+        print(len(name))
+        if len(name) > lab_long:
+            return JsonResponse(Tools.too_long(), status=400)
+        lab_list = Lab.objects.filter(name__contains=name)
+        lab_info = []
+        for lab in lab_list:
+            lab_info.append(
+                {
+                    'id': lab.id,
+                    'name': lab.name,
+                    'department_id': lab.department_id.id,
+                }
+            )
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            "result": lab_info,
+        }
+        return JsonResponse(data, status=200)
 
-    def __init__(self):
-        super().__init__()
-        self.long = lab_long
-        self.obj_model = Lab.objects
-
-    def return_func(self, obj_list):
-        return Tools.return_lab_list(obj_list)
+    def other(self, request):
+        return JsonResponse(Tools.bad_request(), status=400)
 
 
-class FindInstrumentWithName(FindWithName):
-    def __init__(self):
-        super().__init__()
-        self.long = instrument_long
-        self.obj_model = Instrument.objects
+class FindInstrumentWithName(View):
+    """
+    根据仪器名称获取仪器列表
+    """
+    def get(self, requst):
+        name = requst.GET['name']
+        # print(name)
+        if len(name) > lab_long:
+            return JsonResponse(Tools.too_long(), status=400)
+        instrument_list = Instrument.objects.filter(name__contains=name)
+        print(instrument_list)
+        instrument_info = []
+        for instrument in instrument_list:
+            instrument_info.append(
+                {
+                    'id': instrument.id,
+                    'number': instrument.number,
+                    'name': instrument.name,
+                    'model_number': instrument.model_number,
+                    'maker': instrument.maker,
+                    'type': instrument.type,
+                    'lab_id': instrument.lab_id.id,
+                    'is_lend': instrument.is_lend,
+                }
+            )
 
-    def return_func(self, obj_list):
-        return Tools.return_instrument_list(obj_list)
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'result': instrument_info
+        }
+        return JsonResponse(data, status=200)
 
 
 # 根据id寻找
-class FindWithId(View):
+class FindInstrumentWithId(View):
     """
     根据id获取仪器
     """
-    def __init__(self):
-        super().__init__()
-        self.obj_model = Instrument.objects
-
-    def return_func(self, obj_list):
-        return Tools.return_instrument_list(obj_list)
 
     def get(self, request):
 
@@ -419,49 +439,102 @@ class FindWithId(View):
             return JsonResponse(Tools.bad_request())
 
         try:
-            obj = self.obj_model.get(id=id)
+            obj = Instrument.objects.get(id=id)
         except Exception:
             return JsonResponse(Tools.id_is_not_exist())
+
+        obj_info = []
+
+        obj_info.append(
+            {
+                'id': obj.id,
+                'number': obj.number,
+                'name': obj.name,
+                'model_number': obj.model_number,
+                'maker': obj.maker,
+                'type': obj.type,
+                'lab_id': obj.lab_id.id,
+                'is_lend': obj.is_lend,
+            }
+        )
 
         data = {
             'statu': 1,
             'msg': '获取成功',
-            'result': self.return_func([obj])
+            'result': obj_info
         }
         return JsonResponse(data, status=200)
 
 
-class FindInstrumentWithId(FindWithId):
+class FindLabWithId(View):
     """
     根据id获取仪器
     """
-    def __init__(self):
-        super().__init__()
-        self.obj_model = Instrument.objects
+    def get(self, request):
 
-    def return_func(self, obj_list):
-        return Tools.return_instrument_list(obj_list)
+        try:
+            id = int(request.GET['id'])
+        except ValueError:
+            return JsonResponse(Tools.id_is_not_a_number())
+        except Exception:
+            return JsonResponse(Tools.bad_request())
+
+        try:
+            obj = Lab.objects.get(id=id)
+        except Exception:
+            return JsonResponse(Tools.id_is_not_exist())
+
+        obj_info = []
+
+        obj_info.append(
+            {
+                'id': obj.id,
+                'name': obj.name,
+            }
+        )
+
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'result': obj_info
+        }
+        return JsonResponse(data, status=200)
 
 
-class FindLabWithId(FindWithId):
+class FindDepartmentWithId(View):
     """
     根据id获取仪器
     """
-    def __init__(self):
-        super().__init__()
-        self.obj_model = Lab.objects
 
-    def return_func(self, obj_list):
-        return Tools.return_lab_list(obj_list)
+    def get(self, request):
 
+        try:
+            id = int(request.GET['id'])
+        except ValueError:
+            return JsonResponse(Tools.id_is_not_a_number())
+        except Exception:
+            return JsonResponse(Tools.bad_request())
 
-class FindDepartmentWithId(FindWithId):
-    def __init__(self):
-        super().__init__()
-        self.obj_model = Department.objects
+        try:
+            obj = Department.objects.get(id=id)
+        except Exception:
+            return JsonResponse(Tools.id_is_not_exist())
 
-    def return_func(self, obj_list):
-        return Tools.return_department_list(obj_list)
+        obj_info = []
+
+        obj_info.append(
+            {
+                'id': obj.id,
+                'name': obj.name,
+            }
+        )
+
+        data = {
+            'statu': 1,
+            'msg': '获取成功',
+            'result': obj_info
+        }
+        return JsonResponse(data, status=200)
 
 
 # 申请
@@ -503,19 +576,7 @@ class ApplyInstrument(View):
 # 根据上级id查询下级
 class FindLabWithDepartmentId(View):
     def get(self, request):
-        try:
-            id = int(request.GET['id'])
-        except ValueError:
-            return JsonResponse(Tools.id_is_not_a_number())
-        except Exception:
-            return JsonResponse(Tools.bad_request())
-
-        try:
-            page = int(request.GET.get('page', 1))
-        except ValueError:
-            return JsonResponse(Tools.page_is_not_a_number())
-        except Exception:
-            return JsonResponse(Tools.bad_request())
+        id = int(request.GET['id'])
 
         # 检查department存在
         try:
@@ -523,39 +584,19 @@ class FindLabWithDepartmentId(View):
         except Exception:
             return JsonResponse(Tools.id_is_not_exist())
 
-        lab_list = Lab.objects.filter(department_id=d).order_by('id')
-
-        try:
-            lab_list = Tools.return_lab_list(lab_list, page)
-        except EmptyPage:
-            return JsonResponse(Tools.page_empty())
-        except Exception:
-            return JsonResponse(Tools.bad_request())
-
+        lab_list = Lab.objects.filter(department_id=d)
         data = {
             'statu': 1,
             'msg': '获取成功',
             'number': len(lab_list),
-            "result": lab_list
+            "result": Tools.return_lab_list(lab_list)
         }
         return JsonResponse(data)
 
 
 class FindInstrumentWithLabId(View):
     def get(self, request):
-        try:
-            id = int(request.GET['id'])
-        except ValueError:
-            return JsonResponse(Tools.id_is_not_a_number())
-        except Exception:
-            return JsonResponse(Tools.bad_request())
-
-        try:
-            page = int(request.GET.get('page', 1))
-        except ValueError:
-            return JsonResponse(Tools.page_is_not_a_number())
-        except Exception:
-            return JsonResponse(Tools.bad_request())
+        id = int(request.GET['id'])
 
         # 检查department存在
         try:
@@ -563,19 +604,13 @@ class FindInstrumentWithLabId(View):
         except Exception:
             return JsonResponse(Tools.id_is_not_exist())
 
-        obj_list = Instrument.objects.filter(lab_id=d).order_by('id')
-
-        try:
-            obj_list = Tools.return_lab_list(obj_list, page)
-        except EmptyPage:
-            return JsonResponse(Tools.page_empty())
-        except Exception:
-            return JsonResponse(Tools.bad_request())
+        instrument_list = Instrument.objects.filter(lab_id=d)
 
         data = {
             'statu': 1,
             'msg': '获取成功',
-            'number': len(obj_list),
-            "result": obj_list
+            'number': len(instrument_list),
+            'result': Tools.return_instrument_list(instrument_list)
         }
-        return JsonResponse(data)
+        # print(data)
+        return JsonResponse(data, status=200)
