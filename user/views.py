@@ -181,8 +181,8 @@ class Page(View):
         super().__init__()
         self.obj_model = Instrument.objects
 
-    def return_func(self, obj_list):
-        return Tools.return_instrument_list(obj_list)
+    def return_func(self, obj_list, page):
+        return Tools.return_instrument_list(obj_list, page)
 
     def get(self, request):
         try:
@@ -193,9 +193,11 @@ class Page(View):
         except Exception:
             return JsonResponse(Tools.bad_request())
 
+        print(page)
         obj_list = self.obj_model.all().order_by('id')
         try:
             obj_list = self.return_func(obj_list, page)
+            print(obj_list)
         except EmptyPage:
             data = {
                 'statu': 0,
@@ -220,8 +222,8 @@ class DepartmentPage(Page):
         super().__init__()
         self.obj_model = Department.objects
 
-    def return_func(self, obj_list):
-        return Tools.return_department_list(obj_list)
+    def return_func(self, obj_list, page):
+        return Tools.return_department_list(obj_list, page)
 
 
 class LabPage(Page):
@@ -229,17 +231,17 @@ class LabPage(Page):
         super().__init__()
         self.obj_model = Lab.objects
 
-    def return_func(self, obj_list):
-        return Tools.return_lab_list(obj_list)
+    def return_func(self, obj_list, page):
+        return Tools.return_lab_list(obj_list. page)
 
 
-class InstrumentPage(View):
+class InstrumentPage(Page):
     def __init__(self):
         super().__init__()
         self.obj_model = Instrument.objects
 
-    def return_func(self, obj_list):
-        return Tools.return_instrument_list(obj_list)
+    def return_func(self, obj_list, page):
+        return Tools.return_instrument_list(obj_list, page)
 
 
 # 列表接口
@@ -332,7 +334,7 @@ class FindWithName(View):
         if len(name) > self.long:
             return JsonResponse(Tools.too_long(), status=400)
         try:
-            obj_list = Department.objects.filter(name__contains=name).order_by('id')
+            obj_list = self.obj_model.filter(name__contains=name).order_by('id')
         except Exception:
             data = {
                 'statu': 0,
@@ -341,8 +343,11 @@ class FindWithName(View):
             # print(data)
             return JsonResponse(data, status=200)
 
+        # print(name)
+        # print(page)
         try:
             obj_list = self.return_func(obj_list, page)
+            # print('test')
         except EmptyPage:
             return JsonResponse(Tools.page_empty())
         except Exception:
@@ -369,8 +374,8 @@ class FindDepartmentWithName(FindWithName):
         self.long = department_long
         self.obj_model = Department.objects
 
-    def return_func(self, obj_list):
-        return Tools.return_department_list(obj_list)
+    def return_func(self, obj_list, page=1):
+        return Tools.return_department_list(obj_list, page)
 
 
 class FindLabWithName(FindWithName):
@@ -383,8 +388,8 @@ class FindLabWithName(FindWithName):
         self.long = lab_long
         self.obj_model = Lab.objects
 
-    def return_func(self, obj_list):
-        return Tools.return_lab_list(obj_list)
+    def return_func(self, obj_list, page=1):
+        return Tools.return_lab_list(obj_list, page)
 
 
 class FindInstrumentWithName(FindWithName):
@@ -393,8 +398,8 @@ class FindInstrumentWithName(FindWithName):
         self.long = instrument_long
         self.obj_model = Instrument.objects
 
-    def return_func(self, obj_list):
-        return Tools.return_instrument_list(obj_list)
+    def return_func(self, obj_list, page=1):
+        return Tools.return_instrument_list(obj_list, page)
 
 
 # 根据id寻找
