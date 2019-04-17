@@ -34,5 +34,7 @@ urlpatterns = [
     # 分页
     path('DepartmentPage', views.DepartmentPage.as_view(), name='DepartmentPage'),
     path('LabPage', views.LabPage.as_view(), name='LabPage'),
-    path('InstrumentPage', views.InstrumentPage.as_view(), name='InstrumentPage')
+    path('InstrumentPage', views.InstrumentPage.as_view(), name='InstrumentPage'),
+    # 添加数据
+    path('AddData', views.AddData.as_view(), name='AddData')
 ]

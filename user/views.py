@@ -23,7 +23,7 @@ department_long = 20
 lab_page_num = 5
 insturment_page_num = 5
 department_page_num = 5
-
+add_data = False
 
 class Tools:
     @staticmethod
@@ -584,3 +584,57 @@ class FindInstrumentWithLabId(View):
             "result": obj_list
         }
         return JsonResponse(data)
+
+
+class AddData(View):
+    def get(self, request):
+        if add_data:
+            data = {
+                "信息学院": {
+                    "计算机视觉": {
+                        # number model_number, maker, type, is_lend
+                        "计算机": ["001", "001", "海大制造厂", "计算设备", False],
+                        "GPU": ["002", "002", "海大制造厂", "计算设备", False]
+                    },
+                    "计算机算法": {
+                        "计算机": ["003", "003", "海大制造厂", "计算设备", False],
+                        "计算器": ["004", "004", "海大制造厂", "计算设备", False]
+                    }
+                },
+                "工程学院": {
+                    "测绘": {
+                        "尺子": ["005", "005", "海大制造厂", "测量设备", False],
+                        "测绘仪": ["006", "006", "海大制造厂", "测量设备", False]
+                    },
+                    "机床": {
+                        "机车": ["007", "007", "海大制造厂", "加工设备", False],
+                        "车床": ["008", "008", "海大制造厂", "加工设备", False]
+                    }
+                },
+                '文新学院': {
+
+                },
+                '外国语学院': {
+
+                }
+            }
+
+            for i in data.items():
+                d = Department(name=i[0])
+                d.save()
+                for j in data[i[0]].items():
+                    l = Lab(name=j[0], department_id=d)
+                    l.save()
+                    for k in data[i[0]][j[0]].items():
+                        ins = Instrument(
+                            name=k[0],
+                            number=k[1][0],
+                            model_number=k[1][1],
+                            maker=k[1][2],
+                            type=k[1][3],
+                            is_lend=k[1][4],
+                            lab_id=l,
+                        )
+                        print("-", ins.name)
+                        ins.save()
+        return HttpResponse("成功添加")
