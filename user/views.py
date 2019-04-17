@@ -131,8 +131,8 @@ class Tools:
                 {
                     'id': obj.id,
                     'name': obj.name,
-                    'lab_id': obj.department_id.id,
-                    'lab_name': obj.department_id.name,
+                    'department_id': obj.department_id.id,
+                    'department_name': obj.department_id.name,
                 }
             )
         return obj_info
@@ -232,7 +232,7 @@ class LabPage(Page):
         self.obj_model = Lab.objects
 
     def return_func(self, obj_list, page):
-        return Tools.return_lab_list(obj_list. page)
+        return Tools.return_lab_list(obj_list, page)
 
 
 class InstrumentPage(Page):
