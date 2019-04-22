@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="da0f98e1-b9e6-42f1-8fc5-1189ca6e01fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="da0f98e1-b9e6-42f1-8fc5-1189ca6e01fe" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,8 +75,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/user/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="576" column="25" lean-forward="true" selection-start-line="576" selection-start-column="25" selection-end-line="576" selection-end-column="25" />
+            <state relative-caret-position="312">
+              <caret line="574" column="25" lean-forward="true" selection-start-line="574" selection-start-column="25" selection-end-line="574" selection-end-column="25" />
               <folding>
                 <element signature="e#358#421#1" />
                 <element signature="e#651#894#0" />
@@ -299,9 +296,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="946" />
-    <option name="y" value="111" />
-    <option name="width" value="979" />
+    <option name="x" value="945" />
+    <option name="y" value="110" />
+    <option name="width" value="980" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -313,7 +310,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sort_classes" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -535,7 +532,7 @@
       <workItem from="1555820754466" duration="1250000" />
       <workItem from="1555842409706" duration="3148000" />
       <workItem from="1555892742313" duration="1274000" />
-      <workItem from="1555911110728" duration="4020000" />
+      <workItem from="1555911110728" duration="4296000" />
     </task>
     <task id="LOCAL-00001" summary="重起仓库">
       <created>1555329049038</created>
@@ -593,12 +590,12 @@
       <option name="project" value="LOCAL" />
       <updated>1555495483293</updated>
     </task>
-    <task id="LOCAL-00009" summary="尝试添加参数验证和测试">
-      <created>1555291974191</created>
+    <task id="LOCAL-00009" summary="修复1个bug">
+      <created>1555917345561</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1555291974191</updated>
+      <updated>1555917345565</updated>
     </task>
     <task id="LOCAL-00010" summary="提交两个反向查询接口">
       <created>1555310769435</created>
@@ -614,7 +611,7 @@
       <option name="project" value="LOCAL" />
       <updated>1555328510818</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -650,7 +647,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33899000" />
+    <option name="totallyTimeSpent" value="34175000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -670,7 +667,7 @@
       <window_info id="Favorites" order="2" side_tool="true" visible="true" weight="0.3297587" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32551318" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2580645" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32991204" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5718475" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -712,7 +709,8 @@
     <MESSAGE value="修复小bug" />
     <MESSAGE value="修复后台不可见，添加添加数据接口" />
     <MESSAGE value="修复lab分页一个bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复lab分页一个bug" />
+    <MESSAGE value="修复1个bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复1个bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -847,8 +845,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/user/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="576" column="25" lean-forward="true" selection-start-line="576" selection-start-column="25" selection-end-line="576" selection-end-column="25" />
+        <state relative-caret-position="312">
+          <caret line="574" column="25" lean-forward="true" selection-start-line="574" selection-start-column="25" selection-end-line="574" selection-end-column="25" />
           <folding>
             <element signature="e#358#421#1" />
             <element signature="e#651#894#0" />
