@@ -571,7 +571,7 @@ class FindInstrumentWithLabId(View):
         obj_list = Instrument.objects.filter(lab_id=d).order_by('id')
 
         try:
-            obj_list = Tools.return_lab_list(obj_list, page)
+            obj_list = Tools.return_instrument_list(obj_list, page)
         except EmptyPage:
             return JsonResponse(Tools.page_empty())
         except Exception:
