@@ -7,6 +7,7 @@ from django.views import View
 from .models import Lab, Instrument, Apply, ApplyInstrumentList, Department
 from django.core.paginator import Paginator, EmptyPage
 import datetime
+# 状态码声明
 '''
 状态码列表
 1 成功
@@ -16,6 +17,10 @@ import datetime
 -3 参数不正确
 -4 所查询id不存在
 '''
+# 部署条件注意
+'''
+1. 注意将本文件中所有print语句注释，防止由于服务器python为ascii无法打印中文导致报错
+'''
 # 字符串长度设置
 lab_long = 20
 instrument_long = 50
@@ -24,6 +29,7 @@ lab_page_num = 5
 insturment_page_num = 5
 department_page_num = 5
 add_data = False
+
 
 class Tools:
     @staticmethod
@@ -42,6 +48,14 @@ class Tools:
         data = {
             'statu': -1,
             'msg': "异常请求",
+        }
+        return data
+
+    @staticmethod
+    def bad_request_content():
+        data = {
+            'statu': -1,
+            'msg': "请求内容文本有误，请详细检查是否按要求提供接口所需内容数据",
         }
         return data
 
@@ -193,11 +207,11 @@ class Page(View):
         except Exception:
             return JsonResponse(Tools.bad_request())
 
-        print(page)
+        # print(page)
         obj_list = self.obj_model.all().order_by('id')
         try:
             obj_list = self.return_func(obj_list, page)
-            print(obj_list)
+            # print(obj_list)
         except EmptyPage:
             data = {
                 'statu': 0,
@@ -475,10 +489,38 @@ class ApplyInstrument(View):
     申请仪器
     """
     def post(self, requst):
-        email = requst.POST['email']
-        title = requst.POST['title']
-        text = requst.POST['text']
-        instrument_list = requst.POST['instrument_id']
+        try:
+            email = requst.POST.get('email')
+            title = requst.POST.get('title')
+            text = requst.POST.get('text')
+            instrument_list = requst.POST.get('instrument_id')
+        except Exception as e:
+            return JsonResponse(Tools.bad_request())
+        if email == None:
+            data = {
+                "statu": -1,
+                "msg": "请填入邮件，检查是否正确使用接口",
+            }
+            return JsonResponse(data)
+        if title == None:
+            data = {
+                "statu": -1,
+                "msg": "请填入名称，检查是否正确使用接口",
+            }
+            return JsonResponse(data)
+        if text == None:
+            data = {
+                "statu": -1,
+                "msg": "请填入文本，检查是否正确使用接口",
+            }
+            return JsonResponse(data)
+        if instrument_list == None:
+            data = {
+                "statu": -1,
+                "msg": "请填入仪器id列表，检查是否正确使用接口",
+            }
+            return JsonResponse(data)
+
         time = datetime.datetime.now()
         for id in instrument_list.split(' '):
             instrument = Instrument.objects.filter(id=id, is_lend=False)
@@ -635,6 +677,6 @@ class AddData(View):
                             is_lend=k[1][4],
                             lab_id=l,
                         )
-                        print("-", ins.name)
+                        # print("-", ins.name)
                         ins.save()
         return HttpResponse("成功添加")

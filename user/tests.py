@@ -13,6 +13,7 @@ class DepartmentListViewTests(TestCase):
         client = Client()
         url = reverse('user:DepartmentList')+"?head_id=0&number=2"
         response = client.get(url)
+        print(response.content)
         self.assertEqual(200, response.status_code)
 
 
