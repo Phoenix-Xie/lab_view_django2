@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 
 # 小程序相关的系统设置
 hostUrl = "https://www.mathwechat.top/"
-template_id = "PGEkolhSjy68Y4dhA1ebof4UpGFf9Ku7n86qBHfJY0w"
+template_id = "kW-W2iY_De1ZGwGGAkY5lu9QNjmoWOdZiYtiMAV2PD8"
 page = 'pages/index/index'
 
 appid = "wxbf23fb5ffb658b2f"

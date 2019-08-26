@@ -30,6 +30,7 @@ class ApplyAdmin(admin.ModelAdmin):
     actions = [
         'pass_apply',
         'not_pass_apply',
+        "deal_end_apply",
     ]
 
     search_fields = ['title']
@@ -77,6 +78,22 @@ class ApplyAdmin(admin.ModelAdmin):
                 messages.error(request, "该申请已处理过")
 
     not_pass_apply.short_description = "拒绝选定申请"
+
+    def deal_end_apply(self, request, queryset):
+        for apply in queryset:
+            if apply.statu == 1:
+                apply.statu = 2
+                apply.save()
+                apply_instrument_list = ApplyInstrumentList.objects.filter(Apply_id=apply)
+                for ai in apply_instrument_list:
+                    if ai.Instrument_id.is_lend:
+                        ai.Instrument_id.is_lend = False
+                self.message_user(request, "成功完结该申请并归还设备")
+                apply.save()
+            else:
+                messages.error(request, "该申请已处理过")
+
+    deal_end_apply.short_description = "完结并归还选定申请"
 
     readonly_fields = ('id', 'title', 'text', 'time', 'name')
 

@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da0f98e1-b9e6-42f1-8fc5-1189ca6e01fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/migrations/0002_auto_20190826_2218.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/lab_view_django2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lab_view_django2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lab_view_django2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab_view_django2/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/tools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -286,7 +278,7 @@
       <workItem from="1565933700540" duration="1911000" />
       <workItem from="1566823529105" duration="210000" />
       <workItem from="1566823763613" duration="153000" />
-      <workItem from="1566823934779" duration="4862000" />
+      <workItem from="1566823934779" duration="6812000" />
     </task>
     <task id="LOCAL-00001" summary="重起仓库">
       <created>1555329049038</created>
@@ -367,38 +359,6 @@
     </task>
     <option name="localTasksCounter" value="10" />
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="Test__user_tests_addData - 2019.04.17 at 17h 49m 59s.xml">
-      <configuration name="Test: user.tests.addData" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__user_tests_addData - 2019.04.17 at 17h 51m 37s.xml">
-      <configuration name="Test: user.tests.addData" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__user_tests_addData - 2019.04.17 at 17h 52m 01s.xml">
-      <configuration name="Test: user.tests.addData" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__user_tests_addData - 2019.04.17 at 17h 59m 48s.xml">
-      <configuration name="Test: user.tests.addData" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__user_tests_addData - 2019.04.17 at 18h 01m 25s.xml">
-      <configuration name="Test: user.tests.addData" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__user_tests_DepartmentListViewTests - 2019.08.14 at 19h 40m 31s.xml">
-      <configuration name="Test: user.tests.DepartmentListViewTests" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__user_tests_DepartmentListViewTests - 2019.08.14 at 19h 40m 58s.xml">
-      <configuration name="Test: user.tests.DepartmentListViewTests" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__user_tests_DepartmentListViewTests_test_can_work - 2019.08.14 at 19h 43m 01s.xml">
-      <configuration name="Test: user.tests.DepartmentListViewTests.test_can_work" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__user_tests_DepartmentListViewTests - 2019.08.14 at 19h 59m 07s.xml">
-      <configuration name="Test: user.tests.DepartmentListViewTests" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__user_tests_DepartmentListViewTests - 2019.08.14 at 19h 59m 10s.xml">
-      <configuration name="Test: user.tests.DepartmentListViewTests" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
