@@ -2,6 +2,7 @@ from django.contrib import admin, messages
 from django.contrib.admin.actions import delete_selected
 # xie  123456
 # Register your models here.
+from user.tools import pushMsgThread
 from .models import Instrument, Lab, Department, ApplyInstrumentList, Apply, MyUser
 
 # from guardian.admin import GuardedModelAdmin
@@ -49,10 +50,14 @@ class ApplyAdmin(admin.ModelAdmin):
             if not flag:
                 messages.error(request, "操作失败，编号为{}的{}已借出".format(str(ai.Instrument_id.number), ai.Instrument_id.name))
             else:
+                goods_names=""
                 for ai in apply_instrument_list:
                     ai.Instrument_id.is_lend = True
                     ai.Instrument_id.save()
+                    goods_names=goods_names+ai.Instrument_id.name +" "
                 apply.statu = 1
+                pushThread = pushMsgThread(apply.formId, apply.openId, apply.name, "预约成功", goods_names)
+                pushThread.start()
                 apply.save()
                 self.message_user(request, "成功通过申请")
 
@@ -65,6 +70,9 @@ class ApplyAdmin(admin.ModelAdmin):
                 apply.statu = -1
                 apply.save()
                 self.message_user(request, "成功拒绝申请")
+                pushThread = pushMsgThread(apply.formId, apply.openId, apply.name, "预约失败", "预约失败")
+                pushThread.start()
+                apply.save()
             else:
                 messages.error(request, "该申请已处理过")
 

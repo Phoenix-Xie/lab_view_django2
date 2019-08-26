@@ -126,3 +126,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 小程序相关的系统设置
+hostUrl = "https://www.mathwechat.top/"
+template_id = "PGEkolhSjy68Y4dhA1ebof4UpGFf9Ku7n86qBHfJY0w"
+page = 'pages/index/index'
+
+appid = "wxbf23fb5ffb658b2f"
+appsecret = "f98927a5c5cf8ccf0c46b778363f21a9"
+
+

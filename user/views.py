@@ -488,12 +488,14 @@ class ApplyInstrument(View):
     """
     申请仪器
     """
-    def post(self, requst):
+    def post(self, request):
         try:
-            email = requst.POST.get('email')
-            title = requst.POST.get('title')
-            text = requst.POST.get('text')
-            instrument_list = requst.POST.get('instrument_id')
+            email = request.POST.get('email')
+            title = request.POST.get('title')
+            text = request.POST.get('text')
+            instrument_list = request.POST.get('instrument_id')
+            openId = request.POST.get("openId", None)
+            formId = request.POST.get("formId", None)
         except Exception as e:
             return JsonResponse(Tools.bad_request())
         if email == None:
@@ -520,6 +522,18 @@ class ApplyInstrument(View):
                 "msg": "请填入仪器id列表，检查是否正确使用接口",
             }
             return JsonResponse(data)
+        if openId == None:
+            data = {
+                "statu": -1,
+                "msg": "请填入openId，检查是否正确使用接口",
+            }
+            return JsonResponse(data)
+        if formId == None:
+            data = {
+                "statu": -1,
+                "msg": "请填入formId，检查是否正确使用接口",
+            }
+            return JsonResponse(data)
 
         time = datetime.datetime.now()
         for id in instrument_list.split(' '):
@@ -532,7 +546,8 @@ class ApplyInstrument(View):
                 }
                 return JsonResponse(data)
 
-        apply = Apply(title=title, text=text, time=time, email=email)
+
+        apply = Apply(title=title, text=text, time=time, email= email, openId = openId, formId = formId)
         apply.save()
         for id in instrument_list.split(' '):
             instrument = Instrument.objects.get(id=id)

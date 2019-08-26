@@ -70,6 +70,9 @@ class Apply(models.Model):
     time = models.DateField(verbose_name='申请时间')
     statu = models.SmallIntegerField(choices=[(1, "通过"), (-1, "未通过"), (0, "未处理")], verbose_name="状态", default=0)
     name = models.CharField(verbose_name="申请人姓名", default="无", max_length=10)
+    openId = models.CharField(max_length=32, verbose_name="用户微信的openId", default="None")
+    formId = models.CharField(verbose_name="表单id", default="无", max_length=50)
+
 
     class Meta:
         verbose_name_plural = '申请'
