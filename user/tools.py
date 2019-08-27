@@ -97,3 +97,20 @@ def get_access_token():
         return result
     except:
         return False
+
+
+def getOpenId(jscode):
+    try:
+        # print("有jscode")
+        url = "https://api.weixin.qq.com/sns/jscode2session"
+        param = {"grant_type": "authorization_code",
+                 "appid": appid,
+                 "secret": appsecret,
+                 "js_code": jscode,
+                 }
+        result = requests.get(url, params=param)
+        result = result.json()
+        result = result["openid"]
+        return result
+    except:
+        return None

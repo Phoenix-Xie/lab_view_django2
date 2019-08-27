@@ -37,6 +37,6 @@ urlpatterns = [
     path('InstrumentPage', views.InstrumentPage.as_view(), name='InstrumentPage'),
     # 添加数据
     path('AddData', views.AddData.as_view(), name='AddData')
-    # 消息推送
+
 
 ]

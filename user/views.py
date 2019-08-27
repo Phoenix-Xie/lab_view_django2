@@ -4,6 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views import View
 # Create your views here.
 from django.views import View
+
+from user.tools import getOpenId
 from .models import Lab, Instrument, Apply, ApplyInstrumentList, Department
 from django.core.paginator import Paginator, EmptyPage
 import datetime
@@ -546,8 +548,8 @@ class ApplyInstrument(View):
                 }
                 return JsonResponse(data)
 
-
-        apply = Apply(title=title, text=text, time=time, email= email, openId = openId, formId = formId)
+        openid=getOpenId(openId)
+        apply = Apply(title=title, text=text, time=time, email= email, openId = openid, formId = formId)
         apply.save()
         for id in instrument_list.split(' '):
             instrument = Instrument.objects.get(id=id)
