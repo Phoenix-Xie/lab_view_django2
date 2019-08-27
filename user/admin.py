@@ -173,12 +173,23 @@ class InstrumentAdmin(admin.ModelAdmin):
     actions = [
         'set_is_lend',
         'set_not_lend',
+        "deleteSelected",
     ]
     list_display = ('name', 'type', 'maker',"lab_id", 'is_lend')
     ordering = ('id',)
     list_filter = ['lab_id', "type"]
 
     search_fields = ['name']
+    admin.site.disable_action('delete_selected')  # 禁用删除
+
+    def deleteSelected(modeladmin, request, queryset):
+        for one in queryset:
+            if one.lab_id not in request.user.belong_lab.all() and not request.user.is_superuser:
+                messages.error(request, "操作{}失败，您不能操作其他实验室的设备".format(one.name))
+            else:
+                one.delete()
+
+    deleteSelected.short_description = "删除指定内容"
 
     def save_model(self, request, obj, form, change):
         if obj.lab_id not in request.user.belong_lab.all() and not request.user.is_superuser:
