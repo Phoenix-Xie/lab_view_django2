@@ -1,10 +1,10 @@
 import datetime
 import threading
-
+from lab_view_django2.settings import DEFAULT_FROM_EMAIL as FromEmail
 import requests
 from django.http import HttpResponse
 import json
-
+from django.core.mail import send_mail
 from lab_view_django2.settings import template_id, page, appid, appsecret
 
 
@@ -63,6 +63,23 @@ def pushMsg(formId, openid, name, statu, message):
             get_access_token()
         else:
             break
+
+
+# 发送邮件
+class sendEmailThread(threading.Thread):
+    def __init__(self,title,content,toEmail):
+        super(sendEmailThread, self).__init__()
+        self.content=content
+        self.title=title
+        self.toEmail=toEmail
+
+    def run(self):
+        try:
+            send_mail(self.title,self.content, FromEmail,
+                      [self.toEmail], fail_silently=False)
+        except:
+            print("发送邮件出错")
+            pass
 
 
 # 获取access_token 两小时生效时间

@@ -87,4 +87,4 @@ class Apply(models.Model):
 
 
 class MyUser(AbstractUser):
-    belong_lab = models.ForeignKey(Lab,verbose_name="所属实验室",related_name="belongLab",on_delete=models.CASCADE,blank=True,null=True)
+    belong_lab = models.ManyToManyField(Lab,verbose_name="所属实验室",related_name="belongLab",blank=True,null=True)
