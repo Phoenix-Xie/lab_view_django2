@@ -126,3 +126,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# 邮箱设置
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.exmail.qq.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'root@tjming.ga'
+EMAIL_HOST_PASSWORD = 'MathWechat123'
+DEFAULT_FROM_EMAIL = 'Lab <root@tjming.ga>'
+
+
+# 小程序相关的系统设置
+hostUrl = "https://www.mathwechat.top/"
+template_id = "kW-W2iY_De1ZGwGGAkY5lu9QNjmoWOdZiYtiMAV2PD8"
+page = 'pages/index/index'
+
+appid = "wxbf23fb5ffb658b2f"
+appsecret = "f98927a5c5cf8ccf0c46b778363f21a9"
+
+

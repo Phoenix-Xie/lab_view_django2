@@ -4,6 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views import View
 # Create your views here.
 from django.views import View
+
+from user.tools import getOpenId
 from .models import Lab, Instrument, Apply, ApplyInstrumentList, Department
 from django.core.paginator import Paginator, EmptyPage
 import datetime
@@ -488,13 +490,14 @@ class ApplyInstrument(View):
     """
     申请仪器
     """
-    def post(self, requst):
+    def post(self, request):
         try:
-            email = requst.POST.get('email')
-            title = requst.POST.get('title')
-            text = requst.POST.get('text')
-            instrument_list = requst.POST.get('instrument_id')
-            weid = request.POST.get('weid')
+            email = request.POST.get('email')
+            title = request.POST.get('title')
+            text = request.POST.get('text')
+            instrument_list = request.POST.get('instrument_id')
+            openId = request.POST.get("openId", None)
+            formId = request.POST.get("formId", None)
         except Exception as e:
             return JsonResponse(Tools.bad_request())
         if email == None:
@@ -521,9 +524,20 @@ class ApplyInstrument(View):
                 "msg": "请填入仪器id列表，检查是否正确使用接口",
             }
             return JsonResponse(data)
+        if openId == None:
+            data = {
+                "statu": -1,
+                "msg": "请填入openId，检查是否正确使用接口",
+            }
+            return JsonResponse(data)
+        if formId == None:
+            data = {
+                "statu": -1,
+                "msg": "请填入formId，检查是否正确使用接口",
+            }
+            return JsonResponse(data)
 
         time = datetime.datetime.now()
-        # 检查仪器是否可以借出
         for id in instrument_list.split(' '):
             instrument = Instrument.objects.filter(id=id, is_lend=False)
             if instrument.count() == 0:
@@ -534,8 +548,8 @@ class ApplyInstrument(View):
                 }
                 return JsonResponse(data)
 
-        # 申请仪器
-        apply = Apply(title=title, text=text, time=time, email=email, weid=weid)
+        openid=getOpenId(openId)
+        apply = Apply(title=title, text=text, time=time, email= email, openId = openid, formId = formId)
         apply.save()
         for id in instrument_list.split(' '):
             instrument = Instrument.objects.get(id=id)
