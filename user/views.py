@@ -494,6 +494,7 @@ class ApplyInstrument(View):
             title = requst.POST.get('title')
             text = requst.POST.get('text')
             instrument_list = requst.POST.get('instrument_id')
+            weid = request.POST.get('weid')
         except Exception as e:
             return JsonResponse(Tools.bad_request())
         if email == None:
@@ -522,6 +523,7 @@ class ApplyInstrument(View):
             return JsonResponse(data)
 
         time = datetime.datetime.now()
+        # 检查仪器是否可以借出
         for id in instrument_list.split(' '):
             instrument = Instrument.objects.filter(id=id, is_lend=False)
             if instrument.count() == 0:
@@ -532,7 +534,8 @@ class ApplyInstrument(View):
                 }
                 return JsonResponse(data)
 
-        apply = Apply(title=title, text=text, time=time, email=email)
+        # 申请仪器
+        apply = Apply(title=title, text=text, time=time, email=email, weid=weid)
         apply.save()
         for id in instrument_list.split(' '):
             instrument = Instrument.objects.get(id=id)

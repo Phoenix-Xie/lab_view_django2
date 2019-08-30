@@ -65,6 +65,7 @@ class ApplyInstrumentList(models.Model):
 class Apply(models.Model):
     # ApplyInstrumentList_id = models.ForeignKey('ApplyInstrumentList', verbose_name="申请", on_delete=models.CASCADE)
     email = models.CharField(verbose_name='邮箱', max_length=20)
+    weid = models.CharField(verbose_name="微信id", max_length=30, default='')
     title = models.CharField(verbose_name="标题", max_length=100)
     text = models.TextField(verbose_name="内容", max_length=1000)
     time = models.DateField(verbose_name='申请时间')
