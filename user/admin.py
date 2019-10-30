@@ -7,6 +7,7 @@ from django.contrib.auth.models import UserManager
 
 from user.tools import pushMsgThread, sendEmailThread
 from .models import Instrument, Lab, Department, ApplyInstrumentList, Apply, MyUser
+import xlrd
 
 # from guardian.admin import GuardedModelAdmin
 
@@ -250,10 +251,17 @@ class MyUserAdmin(UserAdmin):
     )
     pass
 
+
+
+
 admin.site.register(Apply, ApplyAdmin)
 admin.site.register(Instrument, InstrumentAdmin)
 admin.site.register(Lab, LabAdmin)
 admin.site.register(Department, DepartmentAdmin)
 admin.site.register(ApplyInstrumentList)
 
+
 admin.site.register(MyUser,MyUserAdmin)
+
+admin.site.site_title = u"哈医大实验室服务平台后台管理"
+admin.site.site_header = u"哈医大实验室服务平台后台管理"

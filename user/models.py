@@ -9,12 +9,14 @@ from django.db import models
 class Instrument(models.Model):
     # id = models.IntegerField("id", "id", True, 100000, True, False, False)
     number = models.CharField(verbose_name="编号", max_length=100, default='')
-    name = models.CharField(verbose_name="仪器名称", max_length=500)
-    model_number = models.CharField(verbose_name="仪器编号", max_length=500)
-    maker = models.CharField(verbose_name="厂家", max_length=500)
-    type = models.CharField(verbose_name="类别", max_length=500)
+    name = models.CharField(verbose_name="仪器名称", max_length=500, default='')
+    model_number = models.CharField(verbose_name="仪器编号", max_length=500, default='')
+    model_type = models.CharField(verbose_name="仪器型号", max_length=200, default='')
+    maker = models.CharField(verbose_name="厂家", max_length=500, default='')
+    type = models.CharField(verbose_name="类别", max_length=500, default='')
     lab_id = models.ForeignKey('Lab', verbose_name="所属实验室", on_delete=models.CASCADE)
     is_lend = models.BooleanField(verbose_name='是否出借', default=False)
+    describe = models.CharField(verbose_name="仪器描述", max_length=500, default='')
 
     class Meta:
         verbose_name = r'实验仪器'
@@ -87,4 +89,6 @@ class Apply(models.Model):
 
 
 class MyUser(AbstractUser):
-    belong_lab = models.ManyToManyField(Lab,verbose_name="所属实验室",related_name="belongLab",blank=True,null=True)
+    belong_lab = models.ManyToManyField(Lab, verbose_name="所属实验室", related_name="belongLab",blank=True)
+
+
