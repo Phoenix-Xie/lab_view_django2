@@ -35,13 +35,15 @@ AUTHENTICATION_BACKENDS = (
 )
 
 INSTALLED_APPS = [
+    'excelmodule.apps.ExcelmoduleConfig',
+    'user.apps.UserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user',
+
     # 'user.apps.UserConfig',
     #'guardian',
 ]
@@ -146,5 +148,10 @@ page = 'pages/index/index'
 
 appid = "wxbf23fb5ffb658b2f"
 appsecret = "b826ee1673de422a092f2b4021953b08"
+
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
