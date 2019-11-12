@@ -103,7 +103,6 @@ def get_access_token():
 
 
 def getOpenId(jscode):
-
     try:
         code2openid = Code2OpenID.objects.filter(jscode=jscode)
         if code2openid.count()== 0:
@@ -115,11 +114,11 @@ def getOpenId(jscode):
                      }
             result = requests.get(url, params=param)
             result = result.json()
-            print(result)
+            # print(result)
             result = result["openid"]
             Code2OpenID.objects.create(jscode=jscode, openId=result)
         else:
             result = code2openid[0].openId
         return result
     except:
-        print("获取openid失败")
+        print("getOpenIdFail")
