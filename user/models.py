@@ -91,6 +91,8 @@ class Apply(models.Model):
 class MyUser(AbstractUser):
     belong_lab = models.ManyToManyField(Lab,verbose_name="所属实验室",related_name="belongLab",blank=True,null=True)
 
+    class Meta:
+        verbose_name_plural = '用户'
 
 class Code2OpenID(models.Model):
     jscode = models.CharField(verbose_name='jscode', max_length=50)
@@ -99,6 +101,5 @@ class Code2OpenID(models.Model):
         verbose_name_plural = 'code转openid'
         verbose_name = 'code转openid'
 
-    belong_lab = models.ManyToManyField(Lab, verbose_name="所属实验室", related_name="belongLab",blank=True)
 
 
