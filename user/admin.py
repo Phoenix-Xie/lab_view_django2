@@ -72,14 +72,14 @@ class ApplyAdmin(admin.ModelAdmin):
                     ai.Instrument_id.save()
                     goods_names=goods_names+ai.Instrument_id.name +" "
                 apply.statu = 1
-                pushThread = pushMsgThread(apply.formId, apply.openId, apply.name, "预约成功", goods_names)
+                pushThread = pushMsgThread(apply.formId, apply.openId, apply.title, "预约成功", goods_names)
                 pushThread.start()
                 apply.save()
                 email = apply.email
-                content="用户:"+apply.name+", 您申请的:"+goods_names+",已经通过申请审核."
+                content="用户:"+apply.title+", 您申请的:"+goods_names+",已经通过申请审核."
                 sendMail = sendEmailThread("实验室管理系统", content, email)
                 sendMail.start()
-                self.message_user(request, "成功通过{}的申请".format(apply.name))
+                self.message_user(request, "成功通过{}的申请".format(apply.title))
 
     pass_apply.short_description = "通过选定申请"
 
