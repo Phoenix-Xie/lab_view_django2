@@ -145,6 +145,6 @@ template_id = "kW-W2iY_De1ZGwGGAkY5lu9QNjmoWOdZiYtiMAV2PD8"
 page = 'pages/index/index'
 
 appid = "wxbf23fb5ffb658b2f"
-appsecret = "f98927a5c5cf8ccf0c46b778363f21a9"
+appsecret = "b826ee1673de422a092f2b4021953b08"
 
 

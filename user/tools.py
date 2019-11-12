@@ -6,6 +6,7 @@ from django.http import HttpResponse
 import json
 from django.core.mail import send_mail
 from lab_view_django2.settings import template_id, page, appid, appsecret
+from user.models import Apply, Code2OpenID
 
 
 def CrossDomainReturn(result):
@@ -33,7 +34,7 @@ class pushMsgThread(threading.Thread):
 
 # 推送消息
 def pushMsg(formId, openid, name, statu, message):
-    formId = str(formId, encoding='utf-8')
+    formId = str(formId)
     # print(formId)
     #url = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=ACCESS_TOKEN"
     data = {
@@ -74,12 +75,14 @@ class sendEmailThread(threading.Thread):
         self.toEmail=toEmail
 
     def run(self):
-        try:
-            send_mail(self.title,self.content, FromEmail,
-                      [self.toEmail], fail_silently=False)
-        except:
-            print("发送邮件出错")
-            pass
+        send_mail(self.title, self.content, FromEmail,
+                  [self.toEmail], fail_silently=False)
+        # try:
+        #     send_mail(self.title,self.content, FromEmail,
+        #               [self.toEmail], fail_silently=False)
+        # except:
+        #     print("发送邮件出错")
+        #     pass
 
 
 # 获取access_token 两小时生效时间
@@ -100,17 +103,23 @@ def get_access_token():
 
 
 def getOpenId(jscode):
+
     try:
-        # print("有jscode")
-        url = "https://api.weixin.qq.com/sns/jscode2session"
-        param = {"grant_type": "authorization_code",
-                 "appid": appid,
-                 "secret": appsecret,
-                 "js_code": jscode,
-                 }
-        result = requests.get(url, params=param)
-        result = result.json()
-        result = result["openid"]
+        code2openid = Code2OpenID.objects.filter(jscode=jscode)
+        if code2openid.count()== 0:
+            url = "https://api.weixin.qq.com/sns/jscode2session"
+            param = {"grant_type": "authorization_code",
+                     "appid": appid,
+                     "secret": appsecret,
+                     "js_code": jscode,
+                     }
+            result = requests.get(url, params=param)
+            result = result.json()
+            print(result)
+            result = result["openid"]
+            Code2OpenID.objects.create(jscode=jscode, openId=result)
+        else:
+            result = code2openid[0].openId
         return result
     except:
-        return None
+        print("获取openid失败")

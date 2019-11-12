@@ -28,7 +28,7 @@ class ApplyInstrumentListInline(admin.StackedInline):
 # @admin.register(Apply)
 class ApplyAdmin(admin.ModelAdmin):
     inlines = [ApplyInstrumentListInline]
-    list_display = ('title', 'time',  'name', 'statu')
+    list_display = ( 'name', 'time',  'statu')
     ordering = ('-time',)
     actions = [
         'pass_apply',
@@ -89,7 +89,7 @@ class ApplyAdmin(admin.ModelAdmin):
                 goods=ApplyInstrumentList.objects.filter(Apply_id=apply)[0]
                 if goods.Instrument_id.lab_id not in current_user.belong_lab.all():
                     messages.error(request, "操作失败，您没有权限操作名字为{}的实验室申请".format(str(goods.Instrument_id.lab_id.name)))
-                    return
+                    break
 
             email = apply.email
             if apply.statu == 0:
@@ -116,7 +116,7 @@ class ApplyAdmin(admin.ModelAdmin):
                 goods=ApplyInstrumentList.objects.filter(Apply_id=apply)[0]
                 if goods.Instrument_id.lab_id not in current_user.belong_lab.all():
                     messages.error(request, "操作失败，您没有权限操作名字为{}的实验室申请".format(str(goods.Instrument_id.lab_id)))
-                    return
+                    break
             if apply.statu == 1:
                 apply.statu = 2
                 apply.save()
@@ -124,6 +124,7 @@ class ApplyAdmin(admin.ModelAdmin):
                 for ai in apply_instrument_list:
                     if ai.Instrument_id.is_lend:
                         ai.Instrument_id.is_lend = False
+                        ai.Instrument_id.save()
                 self.message_user(request, "成功完结该申请并归还设备")
                 apply.save()
             else:

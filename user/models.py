@@ -7,7 +7,6 @@ from django.db import models
 
 
 class Instrument(models.Model):
-    # id = models.IntegerField("id", "id", True, 100000, True, False, False)
     number = models.CharField(verbose_name="编号", max_length=100, default='')
     name = models.CharField(verbose_name="仪器名称", max_length=500)
     model_number = models.CharField(verbose_name="仪器编号", max_length=500)
@@ -15,7 +14,6 @@ class Instrument(models.Model):
     type = models.CharField(verbose_name="类别", max_length=500)
     lab_id = models.ForeignKey('Lab', verbose_name="所属实验室", on_delete=models.CASCADE)
     is_lend = models.BooleanField(verbose_name='是否出借', default=False)
-
     class Meta:
         verbose_name = r'实验仪器'
         verbose_name_plural = r'实验仪器'
@@ -64,8 +62,9 @@ class ApplyInstrumentList(models.Model):
 
 class Apply(models.Model):
     # ApplyInstrumentList_id = models.ForeignKey('ApplyInstrumentList', verbose_name="申请", on_delete=models.CASCADE)
+
     email = models.CharField(verbose_name='邮箱', max_length=20)
-    title = models.CharField(verbose_name="标题", max_length=100)
+    title = models.CharField(verbose_name="标题", max_length=100,default="")
     text = models.TextField(verbose_name="内容", max_length=1000)
     time = models.DateField(verbose_name='申请时间')
     statu = models.SmallIntegerField(choices=[(1, "通过"), (-1, "未通过"), (0, "未处理"), (2, "已归还")], verbose_name="状态", default=0)
@@ -88,3 +87,11 @@ class Apply(models.Model):
 
 class MyUser(AbstractUser):
     belong_lab = models.ManyToManyField(Lab,verbose_name="所属实验室",related_name="belongLab",blank=True,null=True)
+
+
+class Code2OpenID(models.Model):
+    jscode = models.CharField(verbose_name='jscode', max_length=50)
+    openId = models.CharField(verbose_name="openId", max_length=50)
+    class Meta:
+        verbose_name_plural = 'code转openid'
+        verbose_name = 'code转openid'
