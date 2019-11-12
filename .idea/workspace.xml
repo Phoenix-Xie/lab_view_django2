@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="da0f98e1-b9e6-42f1-8fc5-1189ca6e01fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/lab_view_django2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lab_view_django2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="da0f98e1-b9e6-42f1-8fc5-1189ca6e01fe" name="Default Changelist" comment="删库">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/migrations/0002_auto_20191029_2259.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/migrations/0003_auto_20191029_2318.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/migrations/0004_auto_20191030_1604.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -306,7 +298,7 @@
       <workItem from="1572398587630" duration="1282000" />
       <workItem from="1572405335639" duration="1196000" />
       <workItem from="1572421313035" duration="2195000" />
-      <workItem from="1573536064269" duration="794000" />
+      <workItem from="1573536064269" duration="1503000" />
     </task>
     <task id="LOCAL-00001" summary="重起仓库">
       <created>1555329049038</created>
@@ -392,7 +384,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567148287814</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="删库">
+      <created>1573537048204</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1573537048204</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">
@@ -441,7 +440,8 @@
     <MESSAGE value="修复1个bug" />
     <MESSAGE value="Merge branch 'master' of https://github.com/Phoenix-Xie/lab_view_django2&#10;创建超管&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;db.sqlite3&#10;#&#9;user/views.py" />
     <MESSAGE value="简单修改了一下" />
-    <option name="LAST_COMMIT_MESSAGE" value="简单修改了一下" />
+    <MESSAGE value="删库" />
+    <option name="LAST_COMMIT_MESSAGE" value="删库" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
