@@ -29,7 +29,7 @@ class ApplyInstrumentListInline(admin.StackedInline):
 # @admin.register(Apply)
 class ApplyAdmin(admin.ModelAdmin):
     inlines = [ApplyInstrumentListInline]
-    list_display = ( 'name', 'time',  'statu')
+    list_display = ( 'title', 'time',  'statu')
     ordering = ('-time',)
     actions = [
         'pass_apply',
