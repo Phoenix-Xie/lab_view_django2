@@ -66,8 +66,8 @@ class ApplyInstrumentList(models.Model):
 
 class Apply(models.Model):
     # ApplyInstrumentList_id = models.ForeignKey('ApplyInstrumentList', verbose_name="申请", on_delete=models.CASCADE)
-    email = models.CharField(verbose_name='邮箱', max_length=20)
-    title = models.CharField(verbose_name="标题", max_length=100)
+    email = models.CharField(verbose_name='联系方式', max_length=20)
+    title = models.CharField(verbose_name="申请人", max_length=100)
     text = models.TextField(verbose_name="内容", max_length=1000)
     time = models.DateField(verbose_name='申请时间')
     statu = models.SmallIntegerField(choices=[(1, "通过"), (-1, "未通过"), (0, "未处理"), (2, "已归还")], verbose_name="状态", default=0)

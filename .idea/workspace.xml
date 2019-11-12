@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="da0f98e1-b9e6-42f1-8fc5-1189ca6e01fe" name="Default Changelist" comment="加了数据">
+    <list default="true" id="da0f98e1-b9e6-42f1-8fc5-1189ca6e01fe" name="Default Changelist" comment="1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/tools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -299,7 +300,7 @@
       <workItem from="1572398587630" duration="1282000" />
       <workItem from="1572405335639" duration="1196000" />
       <workItem from="1572421313035" duration="2195000" />
-      <workItem from="1573536064269" duration="2708000" />
+      <workItem from="1573536064269" duration="3023000" />
     </task>
     <task id="LOCAL-00001" summary="重起仓库">
       <created>1555329049038</created>
@@ -406,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573538421369</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="1">
+      <created>1573538801808</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1573538801808</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -457,7 +465,8 @@
     <MESSAGE value="简单修改了一下" />
     <MESSAGE value="删库" />
     <MESSAGE value="加了数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="加了数据" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

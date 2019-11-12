@@ -493,8 +493,8 @@ class ApplyInstrument(View):
     def post(self, request):
         try:
             email = request.POST.get('email')
-            title = request.POST.get('text')
-            text = request.POST.get('name')
+            text = request.POST.get('text')
+            title = request.POST.get('name')
             instrument_list = request.POST.get('instrument_id')
             openId = request.POST.get("openId", None)
             formId = request.POST.get("formId", None)
