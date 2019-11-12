@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="da0f98e1-b9e6-42f1-8fc5-1189ca6e01fe" name="Default Changelist" comment="删库">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="da0f98e1-b9e6-42f1-8fc5-1189ca6e01fe" name="Default Changelist" comment="删库" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +296,7 @@
       <workItem from="1572398587630" duration="1282000" />
       <workItem from="1572405335639" duration="1196000" />
       <workItem from="1572421313035" duration="2195000" />
-      <workItem from="1573536064269" duration="1503000" />
+      <workItem from="1573536064269" duration="2183000" />
     </task>
     <task id="LOCAL-00001" summary="重起仓库">
       <created>1555329049038</created>
@@ -391,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573537048204</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="删库">
+      <created>1573537660434</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1573537660434</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
