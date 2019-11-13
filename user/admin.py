@@ -72,7 +72,7 @@ class ApplyAdmin(admin.ModelAdmin):
                     ai.Instrument_id.save()
                     goods_names=goods_names+ai.Instrument_id.name +" "
                 apply.statu = 1
-                pushThread = pushMsgThread(apply.formId, apply.openId, apply.title, "预约成功", goods_names)
+                pushThread = pushMsgThread(apply.formId, apply.openId, apply.name, "预约成功", goods_names)
                 pushThread.start()
                 apply.save()
                 email = apply.email
@@ -133,7 +133,7 @@ class ApplyAdmin(admin.ModelAdmin):
 
     deal_end_apply.short_description = "完结并归还选定申请"
 
-    readonly_fields = ('id', 'title', 'text', 'time', 'name')
+    readonly_fields = ('id', 'text', 'time', 'name')
 
     def get_readonly_fields(self, request, obj=None):
         """  重新定义此函数，限制普通用户所能修改的字段  """
