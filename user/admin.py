@@ -37,13 +37,13 @@ class ApplyAdmin(admin.ModelAdmin):
         "deal_end_apply",
     ]
 
-    search_fields = ['title']
+    search_fields = ['name']
 
     def pass_apply(self, request, queryset):
         current_user = request.user
         for apply in queryset:
             if apply.statu != 0:
-                messages.warning(request, "标题:{} 的申请已处理过".format(apply.title))
+                messages.warning(request, "标题:{} 的申请已处理过".format(apply.name))
                 continue
 
 
@@ -76,10 +76,10 @@ class ApplyAdmin(admin.ModelAdmin):
                 pushThread.start()
                 apply.save()
                 email = apply.email
-                content="用户:"+apply.title+", 您申请的:"+goods_names+",已经通过申请审核."
+                content="用户:"+apply.name+", 您申请的:"+goods_names+",已经通过申请审核."
                 sendMail = sendEmailThread("实验室管理系统", content, email)
                 sendMail.start()
-                self.message_user(request, "成功通过{}的申请".format(apply.title))
+                self.message_user(request, "成功通过{}的申请".format(apply.name))
 
     pass_apply.short_description = "通过选定申请"
 
