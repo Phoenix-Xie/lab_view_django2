@@ -494,7 +494,7 @@ class ApplyInstrument(View):
         try:
             email = request.POST.get('email')
             text = request.POST.get('text')
-            title = request.POST.get('name')
+            name = request.POST.get('name')
             instrument_list = request.POST.get('instrument_id')
             openId = request.POST.get("openId", None)
             formId = request.POST.get("formId", None)
@@ -506,7 +506,7 @@ class ApplyInstrument(View):
                 "msg": "请填入邮件，检查是否正确使用接口",
             }
             return JsonResponse(data)
-        if title == None:
+        if name == None:
             data = {
                 "statu": -1,
                 "msg": "请填入名称，检查是否正确使用接口",
@@ -549,7 +549,7 @@ class ApplyInstrument(View):
                 return JsonResponse(data)
 
         openid=getOpenId(openId)
-        apply = Apply(title=title, text=text, time=time, email= email, openId = openid, formId = formId)
+        apply = Apply(name=name, text=text, time=time, email= email, openId = openid, formId = formId)
         apply.save()
         for id in instrument_list.split(' '):
             instrument = Instrument.objects.get(id=id)
